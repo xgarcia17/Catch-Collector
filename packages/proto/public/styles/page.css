@@ -1,0 +1,26 @@
+/* Background of pages */
+body {
+    background-color: #1b81e4;
+}
+
+/* All Text */
+h2, h3, h4, h5, p{
+    color: #c1ffff;
+}
+
+/* Header Text */
+h1 {
+    color: #81a5d1;
+    background-color: #04105e;
+    padding: 10px;
+}
+
+/* Link Text Color */
+a {
+    color: lightgreen;
+}
+
+/* Tables */
+table {
+    background-color: #a4905b;
+}

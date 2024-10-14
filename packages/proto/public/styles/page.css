@@ -1,26 +1,35 @@
 /* Background of pages */
 body {
-    background-color: #1b81e4;
+    background-color: var(--color-background);
 }
 
-/* All Text */
-h2, h3, h4, h5, p{
-    color: #c1ffff;
+/* Small Header Text */
+h2, h3, h4, h5 {
+    color: var(--color-small-header);
+}
+
+p {
+    color: var(--color-basic-text);
 }
 
 /* Header Text */
 h1 {
-    color: #81a5d1;
-    background-color: #04105e;
-    padding: 10px;
+    color: var(--color-large-header);
+    background-color: var(--color-large-header-background);
+    padding: var(--padding-small);
 }
 
 /* Link Text Color */
 a {
-    color: lightgreen;
+    color: var(--color-link-text);
 }
 
 /* Tables */
 table {
-    background-color: #a4905b;
+    background-color: var(--color-table);
+
+    th, td {
+        color: var(--color-basic-text);
+        padding: var(--padding-medium);
+    }
 }

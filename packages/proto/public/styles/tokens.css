@@ -1,0 +1,14 @@
+:root {
+    --color-background: #00065d;
+    --color-large-header-background: #83a0ff;
+
+    --color-large-header: #001f86;
+    --color-small-header: #92d4ff;
+    --color-basic-text: #d9f0ff;
+    --color-link-text: #589fff;
+
+    --color-table: #0071b6;
+
+    --padding-small: 0.25em;
+    --padding-medium: 0.75em;
+}

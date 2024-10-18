@@ -8,6 +8,15 @@ h2, h3, h4, h5 {
     color: var(--color-small-header);
 }
 
+/* Descript list title */
+dt {
+    color: var(--color-small-header);
+}
+/* Description list elements text */
+dd {
+    color: var(--color-basic-text);
+}
+
 p {
     color: var(--color-basic-text);
 }

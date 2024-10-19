@@ -11,4 +11,8 @@
 
     --padding-small: 0.25em;
     --padding-medium: 0.75em;
+
+    /* Fonts */
+    --font-family-body: "New Tegomin", serif;
+    --font-family-display: "Piedra", "Hanalei Fill", "Fredericka the Great", "Cabin Sketch", sans-serif;
 }

@@ -1,6 +1,7 @@
 /* Background of pages */
 body {
     background-color: var(--color-background);
+    font-family: var(--font-family-body);
 }
 
 /* Small Header Text */
@@ -26,6 +27,7 @@ h1 {
     color: var(--color-large-header);
     background-color: var(--color-large-header-background);
     padding: var(--padding-small);
+    font-family: var(--font-family-display);
 }
 
 /* Link Text Color */

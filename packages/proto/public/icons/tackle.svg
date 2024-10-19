@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="icon-bobber" viewBox="0 0 1200 1200">
+    <g>
+        <path d="m600 300c140 0 250 90 250 200 0 140-160 400-250 400s-250-260-250-400c0-110 110-200 250-200m0-100c-195 0-350 135-350 300s175 500 350 500 350-335 350-500-155-300-350-300z"/>
+        <path d="m950 500c0 165-700 165-700 0s155-300 350-300 350 135 350 300z"/>
+        <path transform="scale(50)" d="m12 2v4" fill="none" stroke="black" stroke-miterlimit="10" stroke-width="2"/>
+        <path transform="scale(50)" d="m12 18v4" fill="none" stroke="black" stroke-miterlimit="10" stroke-width="2"/>
+    </g>
+    </symbol>
+  </defs>
+</svg>

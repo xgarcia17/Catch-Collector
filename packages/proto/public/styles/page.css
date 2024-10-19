@@ -1,4 +1,14 @@
-/* Background of pages */
+/* Icons */
+svg.icon {
+    display: inline;
+    height: 2em;
+    width: 2em;
+    vertical-align: middle;
+    fill: var(--color-background);
+    color: var(--color-background);
+}
+
+/*Background of pages*/
 body {
     background-color: var(--color-background);
     font-family: var(--font-family-body);

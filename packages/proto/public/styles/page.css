@@ -12,16 +12,17 @@ svg.icon {
 body {
     background-color: var(--color-background);
     font-family: var(--font-family-body);
+    margin-bottom: var(--margin-small);
 }
 
 .main-page-list {
-    margin-top: 1em;
-    margin-left: 2em;
+    margin-top: var(--margin-tiny);
+    margin-left: var(--margin-small);
     list-style-type: none;
 }
 
 .section-title {
-    margin-left: 2em;
+    margin-left: var(--margin-small);
 }
 
 /* Small Header Text */
@@ -39,7 +40,7 @@ dd {
 }
 
 * > dt > dl {
-    margin-left: 2em;
+    margin-left: var(--margin-small);
 }
 
 p {
@@ -52,7 +53,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    font-size: 1.2em;
+    font-size: 1.var(--margin-small);
 }
 
 /* Tables */
@@ -64,23 +65,21 @@ table {
         padding: var(--padding-medium);
     }
 }
-.table-container-centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2em;
-    margin-left: 2em;
-    margin-right: 2em;
-    margin-bottom: 2em;
-}
+
 .table-container {
-    margin-top: 2em;
-    margin-left: 2em;
-    margin-right: 2em;
-    margin-bottom: 2em;
+    margin-top: var(--margin-small);
+    margin-left: var(--margin-small);
+    margin-right: var(--margin-small);
+    margin-bottom: var(--margin-small);
+    
+    .table-container-centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 .table-title {
-    padding-bottom: 1em;
+    padding-bottom: var(--margin-tiny);
 }
 
 /* Header Text */
@@ -92,17 +91,17 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 2em;
+    margin-bottom: var(--margin-small);
 }
 .header-title {
     margin-left: 0.25em;
 }
 .header-contents {
-    margin-right: 2em;
+    margin-right: var(--margin-small);
     display: flex;
     align-items: right;
     justify-content: space-between;
-    gap: 2em;
+    gap: var(--margin-small);
     color: var(--color-large-header);
 }
 
@@ -111,25 +110,25 @@ header h2 {
 }
 
 .trip-section-block {
-    margin-bottom: 1em;
+    margin-bottom: var(--margin-tiny);
 }
 
 .gear-body-container > ul {
-    margin-bottom: 1em;
+    margin-bottom: var(--margin-tiny);
 }
 
 .gear-combo-section {
-    margin-bottom: 1em;
+    margin-bottom: var(--margin-tiny);
 }
 
 .waters-body-container {
     > ul {
-        margin-left: 2em;
+        margin-left: var(--margin-small);
     }
 }
 .water-details {
-    margin-bottom: 1em;
+    margin-bottom: var(--margin-tiny);
     > dd {
-        margin-left: 2em;
+        margin-left: var(--margin-small);
     }
 }

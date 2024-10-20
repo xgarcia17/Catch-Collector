@@ -1,8 +1,8 @@
 /* Icons */
 svg.icon {
     display: inline;
-    height: 2em;
-    width: 2em;
+    height: 1.5em;
+    width: 1.5em;
     vertical-align: middle;
     fill: var(--color-background);
     color: var(--color-background);
@@ -12,6 +12,16 @@ svg.icon {
 body {
     background-color: var(--color-background);
     font-family: var(--font-family-body);
+}
+
+.main-page-list {
+    margin-top: 1em;
+    margin-left: 2em;
+    list-style-type: none;
+}
+
+.section-title {
+    margin-left: 2em;
 }
 
 /* Small Header Text */
@@ -28,21 +38,21 @@ dd {
     color: var(--color-basic-text);
 }
 
-p {
-    color: var(--color-basic-text);
+* > dt > dl {
+    margin-left: 2em;
 }
 
-/* Header Text */
-h1 {
-    color: var(--color-large-header);
-    background-color: var(--color-large-header-background);
-    padding: var(--padding-small);
-    font-family: var(--font-family-display);
+p {
+    color: var(--color-basic-text);
 }
 
 /* Link Text Color */
 a {
     color: var(--color-link-text);
+    text-decoration: none;
+}
+a:hover {
+    font-size: 1.2em;
 }
 
 /* Tables */
@@ -52,5 +62,74 @@ table {
     th, td {
         color: var(--color-basic-text);
         padding: var(--padding-medium);
+    }
+}
+.table-container-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+.table-container {
+    margin-top: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+.table-title {
+    padding-bottom: 1em;
+}
+
+/* Header Text */
+header {
+    color: var(--color-large-header);
+    background-color: var(--color-large-header-background);
+    padding: var(--padding-small);
+    font-family: var(--font-family-display);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2em;
+}
+.header-title {
+    margin-left: 0.25em;
+}
+.header-contents {
+    margin-right: 2em;
+    display: flex;
+    align-items: right;
+    justify-content: space-between;
+    gap: 2em;
+    color: var(--color-large-header);
+}
+
+header h2 {
+    color: var(--color-large-header);
+}
+
+.trip-section-block {
+    margin-bottom: 1em;
+}
+
+.gear-body-container > ul {
+    margin-bottom: 1em;
+}
+
+.gear-combo-section {
+    margin-bottom: 1em;
+}
+
+.waters-body-container {
+    > ul {
+        margin-left: 2em;
+    }
+}
+.water-details {
+    margin-bottom: 1em;
+    > dd {
+        margin-left: 2em;
     }
 }

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,36 +12,43 @@
     <title>Catch Collector</title>
 </head>
 <body>
-    <h1>
-        <svg class="icon">
-            <use href="../icons/tackle.svg#icon-bobber" />
-        </svg>
-        Your Gear
-    </h1>
-    <ul>
+    <header>
+        <h1 class="header-title">
+            <svg class="icon">
+                <use href="../icons/tackle.svg#icon-bobber" />
+            </svg>
+            Your Gear
+        </h1>
+        <div class="header-contents">
+            <a href="../index.html"><h2>Home</h2></a>
+            <h2>Menu</h2>
+            <h2>Xavier G.</h2>
+        </div>
+    </header>
+    <ul class="gear-body-container">
         <h3>Your Combos</h3>
         <ul>
-            <dt>Green Lew's</dt>
-            <dl>
+            <dl class="gear-combo-section">
+                <dt>Green Lew's</dt>
                 <dd><strong>Rod:</strong> Lew's Mach II Casting, 7', MH</dd>
                 <dd><strong>Reel:</strong> Lew's Mach II Speed Spool, GR: 7.2:1</dd>
                 <dd><strong>Line:</strong> 15lb Flourocarbon</dd>
             </dl>
-            <dt>Red Lew's</dt>
-            <dl>
+            <dl class="gear-combo-section">
+                <dt>Red Lew's</dt>
                 <dd><strong>Rod:</strong> Lew's Mach II Fuego Casting, 7', MH</dd>
                 <dd><strong>Reel:</strong> Browning, GR: 5.4:1</dd>
                 <dd><strong>Line:</strong> 15lb Flourocarbon</dd>
             </dl>
-            <dt>Field & Stream Heavy</dt>
-            <dl>
+            <dl class="gear-combo-section">
+                <dt>Field & Stream Heavy</dt>
                 <dd><strong>Rod:</strong> Field & Stream Casting, 7'-3", H</dd>
                 <dd><strong>Reel:</strong> BP Champion, GR: 6.3:1</dd>
                 <dd><strong>Line:</strong> 50lb Braid</dd>
                 <dd><strong>Leader:</strong> 25lb Flourocarbon</dd>
             </dl>
-            <dt>Uncle Ken's Spinning</dt>
-            <dl>
+            <dl class="gear-combo-section">
+                <dt>Uncle Ken's Spinning</dt>
                 <dd><strong>Rod:</strong> Spinning, 7'-6", M</dd>
                 <dd><strong>Reel:</strong> Ugly Stick</dd>
                 <dd><strong>Line:</strong> 6lb Flourocarbon</dd>
@@ -53,7 +61,7 @@
             <p><strong>Field & Stream</strong>, Type: Casting, Size: 7'-3", Power: Heavy, Action: Medimu<p>
             <p><strong>Uncle Ken's Spinning</strong>, Type: Spinning, Size: 7'-6", Power: Medium, Action: Fast<p>
         </ul>
-        <dt><h3>Your Reels</h3></dt>
+        <h3>Your Reels</h3>
         <ul>
             <p><strong>Lew's Mach II Speed Spool</strong>, Type: Casting, Gear Ratio: 7.2:1<p>
             <p><strong>BP Champion</strong>, Type: Casting, Gear Ratio: 6.3:1<p>

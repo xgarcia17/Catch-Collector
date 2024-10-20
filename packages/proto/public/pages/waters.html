@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,26 +12,41 @@
     <title>Catch Collector</title>
 </head>
 <body>
-    <h1>Waters</h1>
-    <h3>Freshwater</h3>
-    <ul>
-        <dt><h4>Laguna Lake</h4></dt>
-        <dd><strong>Body Type:</strong> Lake</dd>
-        <dd><strong>Location:</strong> San Luis Obipo, CA</dd>
-
-        <dt><h4>Lake Nacimiento</h4></dt>
-        <dd><strong>Body Type:</strong> Lake</dd>
-        <dd><strong>Location:</strong> Paso Robles, CA</dd>
-    </ul>
-    <h3>Saltwater</h3>
-    <ul>
-        <dt><h4>Avila Beach Public Pier</h4></dt>
-        <dd><strong>Body Type:</strong> Ocean Pier</dd>
-        <dd><strong>Location:</strong> Avila Beach, CA</dd>
-
-        <dt><h4>Morro Strand State Beach</h4></dt>
-        <dd><strong>Body Type:</strong> Ocean Beach</dd>
-        <dd><strong>Location:</strong> Morro Bay, CA</dd>
-    </ul>
+    <header>
+        <h1 class="header-title">Waters</h1>
+        <div class="header-contents">
+            <a href="../index.html"><h2>Home</h2></a>
+            <h2>Menu</h2>
+            <h2>Xavier G.</h2>
+        </div>
+    </header>
+    <div class="waters-body-container">
+        <h3 class="section-title">Freshwater</h3>
+        <ul>
+            <div class="water-details">
+                <dt><h4>Laguna Lake</h4></dt>
+                <dd><strong>Body Type:</strong> Lake</dd>
+                <dd><strong>Location:</strong> San Luis Obipo, CA</dd>
+            </div>
+            <div class="water-details">
+                <dt><h4>Lake Nacimiento</h4></dt>
+                <dd><strong>Body Type:</strong> Lake</dd>
+                <dd><strong>Location:</strong> Paso Robles, CA</dd>
+            </div>
+        </ul>
+        <h3 class="section-title">Saltwater</h3>
+        <ul>
+            <div class="water-details">
+                <dt><h4>Avila Beach Public Pier</h4></dt>
+                <dd><strong>Body Type:</strong> Ocean Pier</dd>
+                <dd><strong>Location:</strong> Avila Beach, CA</dd>
+            </div>
+            <div class="water-details">
+                <dt><h4>Morro Strand State Beach</h4></dt>
+                <dd><strong>Body Type:</strong> Ocean Beach</dd>
+                <dd><strong>Location:</strong> Morro Bay, CA</dd>
+            </div>
+        </ul>
+    </div>
 </body>
 </html>

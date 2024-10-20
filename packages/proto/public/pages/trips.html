@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,25 +13,35 @@
     <title>Catch Collector</title>
 </head>
 <body>
-    <h1>Your Trips</h1>
+    <header>
+        <h1 class="header-title">Your Trips</h1>
+        <div class="header-contents">
+            <a href="../index.html"><h2>Home</h2></a>
+            <h2>Menu</h2>
+            <h2>Xavier G.</h2>
+        </div>
+    </header>
     <ul>
-        <dt>Morro Strand State Beach : Sun, 10/13/2024</dt>
-        <dl>
-            <dd><strong>Location:</strong> Morro Strand State Beach, Morro Bay, CA<dd>
-            <dd><strong>Date:</strong> Sunday, October 13, 2024<dd>
-            <dd><strong>Time:</strong> 11:17 AM - 1:54 PM<dd>
-            <dd><strong>Weather:</strong> Overcast, Start Temp: 53°F, End Temp: 65°F<dd>
-            <dd><strong>Catches:</strong> 3 Surfperch<dd>
-        </dl>
-
-        <dt>Laguna Lake : Mon, 9/16/2024</dt>
-        <dl>
-            <dd><strong>Location:</strong> Laguna Lake, San Luis Obispo, CA<dd>
-            <dd><strong>Date:</strong> Monday, September 16, 2024<dd>
-            <dd><strong>Time:</strong> 8:15 AM - 11:26 AM<dd>
-            <dd><strong>Weather:</strong> Sunny, Start Temp: 56°F, End Temp: 72°F<dd>
-            <dd><strong>Catches:</strong> 2 Largemouth Bass, 1 Bluegill<dd>
-        </dl>
+        <div class="trip-section-block">
+            <dt>Morro Strand State Beach : Sun, 10/13/2024</dt>
+            <ul>
+                <dd><strong>Location:</strong> Morro Strand State Beach, Morro Bay, CA<dd>
+                <dd><strong>Date:</strong> Sunday, October 13, 2024<dd>
+                <dd><strong>Time:</strong> 11:17 AM - 1:54 PM<dd>
+                <dd><strong>Weather:</strong> Overcast, Start Temp: 53°F, End Temp: 65°F<dd>
+                <dd><strong>Catches:</strong> 3 Surfperch<dd>
+            </ul>
+        </div>
+        <div class="trip-section-block">
+            <dt>Laguna Lake : Mon, 9/16/2024</dt>
+            <ul>
+                <dd><strong>Location:</strong> Laguna Lake, San Luis Obispo, CA<dd>
+                <dd><strong>Date:</strong> Monday, September 16, 2024<dd>
+                <dd><strong>Time:</strong> 8:15 AM - 11:26 AM<dd>
+                <dd><strong>Weather:</strong> Sunny, Start Temp: 56°F, End Temp: 72°F<dd>
+                <dd><strong>Catches:</strong> 2 Largemouth Bass, 1 Bluegill<dd>
+            </ul>
+        </div>
     </ul>
 </body>
 </html>

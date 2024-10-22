@@ -1,3 +1,15 @@
+
+/* Page grid */
+.page {
+    display: grid;
+    grid-template-columns: [start] 1fr 1fr 1fr 1fr [end];
+    grid-row-gap: var(--margin-small);
+}
+.page > header {
+    grid-column: start / end;
+    margin-bottom: -1 * var(--margin-small);
+}
+
 /* Icons */
 svg.icon {
     display: inline;
@@ -53,7 +65,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    font-size: 1.var(--margin-small);
+    font-size: 1.10em;
 }
 
 /* Tables */
@@ -71,6 +83,8 @@ table {
     margin-left: var(--margin-small);
     margin-right: var(--margin-small);
     margin-bottom: var(--margin-small);
+
+    grid-column: 1 / 5;
     
     .table-container-centered {
         display: flex;
@@ -80,6 +94,7 @@ table {
 }
 .table-title {
     padding-bottom: var(--margin-tiny);
+    text-align: center;
 }
 
 /* Header Text */
@@ -92,6 +107,7 @@ header {
     align-items: center;
     justify-content: space-between;
     margin-bottom: var(--margin-small);
+    flex-basis: min-content;
 }
 .header-title {
     margin-left: 0.25em;
@@ -107,28 +123,4 @@ header {
 
 header h2 {
     color: var(--color-large-header);
-}
-
-.trip-section-block {
-    margin-bottom: var(--margin-tiny);
-}
-
-.gear-body-container > ul {
-    margin-bottom: var(--margin-tiny);
-}
-
-.gear-combo-section {
-    margin-bottom: var(--margin-tiny);
-}
-
-.waters-body-container {
-    > ul {
-        margin-left: var(--margin-small);
-    }
-}
-.water-details {
-    margin-bottom: var(--margin-tiny);
-    > dd {
-        margin-left: var(--margin-small);
-    }
 }

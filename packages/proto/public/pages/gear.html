@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
     <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="stylesheet" href="/styles/gear.css" />
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,9 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catch Collector</title>
 </head>
-<body>
+<body class="page">
     <header>
         <h1 class="header-title">
+            Catch Collector
             <svg class="icon">
                 <use href="../icons/tackle.svg#icon-bobber" />
             </svg>
@@ -25,8 +27,8 @@
             <h2>Xavier G.</h2>
         </div>
     </header>
-    <ul class="gear-body-container">
-        <h3>Your Combos</h3>
+    <div class="combos-list">
+        <h3 class="section-title">Your Combos</h3>
         <ul>
             <dl class="gear-combo-section">
                 <dt>Green Lew's</dt>
@@ -54,20 +56,24 @@
                 <dd><strong>Line:</strong> 6lb Flourocarbon</dd>
             </dl>
         </ul>
-        <h3>Your Rods</h3>
+    </div>
+    <div class="rods-list">
+        <h3 class="section-title">Your Rods</h3>
         <ul>
-            <p><strong>Lew's Mach II</strong>, Type: Casting, Size: 7', Power: Medium-Heavy, Action: Fast<p>
-            <p><strong>Lew's Mach II Fuego</strong>, Type: Casting, Size: 7', Power: Medium-Heavy, Action: Medium<p>
-            <p><strong>Field & Stream</strong>, Type: Casting, Size: 7'-3", Power: Heavy, Action: Medimu<p>
-            <p><strong>Uncle Ken's Spinning</strong>, Type: Spinning, Size: 7'-6", Power: Medium, Action: Fast<p>
+            <h5>Lew's Mach II</h5><p>Type: Casting, Size: 7', Power: Medium-Heavy, Action: Fast<p>
+            <h5>Lew's Mach II Fuego</h5><p>Type: Casting, Size: 7', Power: Medium-Heavy, Action: Medium<p>
+            <h5>Field & Stream</h5><p>ype: Casting, Size: 7'-3", Power: Heavy, Action: Medimu<p>
+            <h5>Uncle Ken's Spinning</h5><p>Type: Spinning, Size: 7'-6", Power: Medium, Action: Fast<p>
         </ul>
-        <h3>Your Reels</h3>
+    </div>
+    <div class="reels-list">
+        <h3 class="section-title">Your Reels</h3>
         <ul>
-            <p><strong>Lew's Mach II Speed Spool</strong>, Type: Casting, Gear Ratio: 7.2:1<p>
-            <p><strong>BP Champion</strong>, Type: Casting, Gear Ratio: 6.3:1<p>
-            <p><strong>Browning</strong>, Type: Casting, Gear Ratio: 5.4:1<p>
-            <p><strong>Uncle Ken's Spinning</strong>, Type: Spinning<p>
+            <h5>Lew's Mach II Speed Spool</h5><p>Type: Casting, Gear Ratio: 7.2:1<p>
+            <h5>BP Champion</h5><p>Type: Casting, Gear Ratio: 6.3:1<p>
+            <h5>Browning</h5><p>Type: Casting, Gear Ratio: 5.4:1<p>
+            <h5>Uncle Ken's Spinning</h5><p>Type: Spinning<p>
         </ul>
-    </ul>
+    </div>
 </body>
 </html>

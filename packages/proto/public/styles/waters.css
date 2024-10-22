@@ -1,0 +1,37 @@
+
+/* CSS for waters.html specific styling */
+
+.page {
+    margin-left: none;
+    > .section-titles {
+        grid-column: start / end;
+        display: flex;
+        text-align: center;    
+        justify-content: center;
+        gap: 30em;
+    }
+} 
+
+.water-content {
+    margin-bottom: var(--margin-small);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    h4 {
+        grid-column: 1 / 2;
+    }
+    .water-description {
+        grid-column: 2 / 3;
+    }
+}
+
+.freshwater-section {
+    display: grid;
+    grid-column: start / 3;
+    grid-auto-rows: auto;
+}
+.saltwater-section {
+    display: grid;
+    /* padding-left: -1 * var(--margin-small); */
+    grid-column: 3 / end;
+    grid-auto-rows: auto;
+}

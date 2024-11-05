@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="/styles/reset.css" />
-    <link rel="stylesheet" href="/styles/tokens.css" />
-    <link rel="stylesheet" href="/styles/page.css" />
-    <link rel="stylesheet" href="/styles/trips.css" />
-    <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap" rel="stylesheet">
-    <title>Catch Collector</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catch Collector</title>
-</head>
-<body class="page">
-    <header>
-        <h1 class="header-title">Catch Collector &nbsp|&nbsp Your Trips</h1>
-        <div class="header-contents">
-            <a href="../index.html"><h2>Home</h2></a>
-            <h2>Menu</h2>
-            <h2>Xavier G.</h2>
-        </div>
-    </header>
+    <head>
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <link rel="stylesheet" href="/styles/tokens.css" />
+        <link rel="stylesheet" href="/styles/page.css" />
+        <link rel="stylesheet" href="/styles/trips.css" />
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap" rel="stylesheet">
+        <title>Catch Collector</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Catch Collector</title>
+        <script type="importmap">
+            {
+              "imports": {
+                "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+              }
+            }
+        </script>
+    </head>
+    <body class="page">
+        <script type="module">
+            import { define } from "@calpoly/mustang";
+            import { TripDetails } from "/scripts/TripDetails.js";
+          
+            define({
+              "trip-details": TripDetails
+            });
+        </script>
+        <header>
+            <h1 class="header-title">Catch Collector &nbsp|&nbsp Your Trips</h1>
+            <div class="header-contents">
+                <a href="../index.html"><h2>Home</h2></a>
+                <h2>Menu</h2>
+                <h2>Xavier G.</h2>
+            </div>
+        </header>
         <div class="trip-section-block">
             <dt>Morro Strand State Beach : Sun, 10/13/2024</dt>
             <ul>
@@ -42,5 +57,16 @@
                 <dd><strong>Catches:</strong> 2 Largemouth Bass, 1 Bluegill<dd>
             </ul>
         </div>
-</body>
+        <!-- <trip-details class="trip-section-block">
+            <dt><span slot="trip-title-text">Halloween at Morro Bay</span> : <span slot="trip-title-date">Thu, 10/31/2024</span></dt>
+            <ul>
+                <dd><strong>Location:</strong> <span slot="location">Morro Strand State Beach, Morro Bay, CA<span></dd>
+                <dd><strong>Date:</strong> <span slot="date">Thursday, October 31, 2024<span></dd>
+                <dd><strong>Time:</strong> <span slot="time">8:10 AM - 11:00 AM<span></dd>
+                <dd><strong>Weather:</strong> <span slot="weather">Overcast, Start Temp: 47°F, End Temp: 56°F<span></dd>
+                <dd><strong>Catches:</strong> <span slot="catches">1 Smelt, 3 Surfperch<span></dd>
+            </ul>
+        </trip-details> -->
+        <trip-details class="trip-section-block"/>
+    </body>
 </html>

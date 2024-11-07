@@ -4,16 +4,14 @@ import reset from "./styles/reset.css.js";
 export class TripDetails extends HTMLElement {
   static template = html`
     <template>
-      <trip-details class="trip-section-block">
-        <dt><span slot="trip-title-text">Halloween at Morro Bay</span> : <span slot="trip-title-date">Thu, 10/31/2024</span></dt>
+        <dt><slot name="trip-title-text"><em>trip name</em></slot> : <slot name="trip-title-date"><em>shortened trip date</em></slot></dt>
         <ul>
-            <dd><strong>Location:</strong> <span slot="location">Morro Strand State Beach, Morro Bay, CA<span></dd>
-            <dd><strong>Date:</strong> <span slot="date">Thursday, October 31, 2024<span></dd>
-            <dd><strong>Time:</strong> <span slot="time">8:10 AM - 11:00 AM<span></dd>
-            <dd><strong>Weather:</strong> <span slot="weather">Overcast, Start Temp: 47°F, End Temp: 56°F<span></dd>
-            <dd><strong>Catches:</strong> <span slot="catches">1 Smelt, 3 Surfperch<span></dd>
+            <dd><strong>Location:</strong> <slot name="location"><em>location</em></slot></dd>
+            <dd><strong>Date:</strong> <slot name="date"><em>full date</em></slot></dd>
+            <dd><strong>Time:</strong> <slot name="start-time"><em>start slot</em></slot> - <slot name="end-time"><em>end slot</em></slot></dd>
+            <dd><strong>Weather:</strong> <slot name="weather"><em>weather type</em></slot>, Start Temp: <slot name="start-temp"><em>start temp</em></slot>, End Temp: <slot name="end-temp"><em>end temp</em></slot></dd>
+            <dd><strong>Catches:</strong> <slot name="catches"><em>list of catches</em></slot></dd>
         </ul>
-      </trip-details>
     </template>
   `;
 

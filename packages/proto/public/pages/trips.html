@@ -1,46 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="/styles/reset.css" />
-    <link rel="stylesheet" href="/styles/tokens.css" />
-    <link rel="stylesheet" href="/styles/page.css" />
-    <link rel="stylesheet" href="/styles/trips.css" />
-    <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap" rel="stylesheet">
-    <title>Catch Collector</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catch Collector</title>
-</head>
-<body class="page">
-    <header>
-        <h1 class="header-title">Catch Collector &nbsp|&nbsp Your Trips</h1>
-        <div class="header-contents">
-            <a href="../index.html"><h2>Home</h2></a>
-            <h2>Menu</h2>
-            <h2>Xavier G.</h2>
-        </div>
-    </header>
-        <div class="trip-section-block">
-            <dt>Morro Strand State Beach : Sun, 10/13/2024</dt>
-            <ul>
-                <dd><strong>Location:</strong> Morro Strand State Beach, Morro Bay, CA<dd>
-                <dd><strong>Date:</strong> Sunday, October 13, 2024<dd>
-                <dd><strong>Time:</strong> 11:17 AM - 1:54 PM<dd>
-                <dd><strong>Weather:</strong> Overcast, Start Temp: 53°F, End Temp: 65°F<dd>
-                <dd><strong>Catches:</strong> 3 Surfperch<dd>
-            </ul>
-        </div>
-        <div class="trip-section-block">
-            <dt>Laguna Lake : Mon, 9/16/2024</dt>
-            <ul>
-                <dd><strong>Location:</strong> Laguna Lake, San Luis Obispo, CA<dd>
-                <dd><strong>Date:</strong> Monday, September 16, 2024<dd>
-                <dd><strong>Time:</strong> 8:15 AM - 11:26 AM<dd>
-                <dd><strong>Weather:</strong> Sunny, Start Temp: 56°F, End Temp: 72°F<dd>
-                <dd><strong>Catches:</strong> 2 Largemouth Bass, 1 Bluegill<dd>
-            </ul>
-        </div>
-</body>
+    <head>
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <link rel="stylesheet" href="/styles/tokens.css" />
+        <link rel="stylesheet" href="/styles/page.css" />
+        <link rel="stylesheet" href="/styles/trips.css" />
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap" rel="stylesheet">
+        <title>Catch Collector</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Catch Collector</title>
+    </head>
+
+    <script type="importmap">
+        {
+          "imports": {
+            "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+          }
+        }
+    </script>
+
+    <script type="module">
+        import { define } from "@calpoly/mustang";
+        import { TripDetails } from "../scripts/TripDetails.js";
+      
+        define({
+          "trip-details": TripDetails
+        });
+    </script>
+
+    <body class="page">
+        <header>
+            <h1 class="header-title">Catch Collector &nbsp|&nbsp Your Trips</h1>
+            <div class="header-contents">
+                <a href="../index.html"><h2>Home</h2></a>
+                <h2>Menu</h2>
+                <h2>Xavier G.</h2>
+            </div>
+        </header>
+        <trip-details class="trip-section-block">
+            <slot slot="trip-title-text">Morro Strand State Beach</slot>
+            <time slot="trip-title-date">Sun, 10/13/2024</time>
+            <slot slot="location">Morro Strand State Beach, Morro Bay, CA</slot>
+            <time slot="date">Sunday, October 13, 2024</time>
+            <time slot="start-time">11:17 AM</time>
+            <time slot="end-time">1:54 PM</time>
+            <slot slot="weather">Overcast</slot>
+            <slot slot="start-temp">53°F</slot>
+            <slot slot="end-temp">65°F</slot>
+            <slot slot="catches">3 Surfperch</slot>
+        </trip-details>
+
+        <trip-details class="trip-section-block">
+            <slot slot="trip-title-text">Laguna Lake</slot>
+            <time slot="trip-title-date">Mon, 9/16/2024</time>
+            <slot slot="location">Laguna Lake, San Luis Obispo, CA</slot>
+            <time slot="date">Monday, September 16, 2024</time>
+            <time slot="start-time">8:15 AM</time>
+            <time slot="end-time">11:26 AM</time>
+            <slot slot="weather">Sunny</slot>
+            <slot slot="start-temp">56°F</slot>
+            <slot slot="end-temp">72°F</slot>
+            <slot slot="catches">2 Largemouth Bass, 1 Bluegill</slot>
+        </trip-details>
+
+        <trip-details class="trip-section-block">
+            <slot slot="trip-title-text">Halloween at Morro Bay</slot>
+            <time slot="trip-title-date">Thu, 10/31/2024</time>
+            <slot slot="location">Morro Strand State Beach, Morro Bay, CA</slot>
+            <time slot="date">Monday, September 16, 2024</time>
+            <time slot="start-time">8:00 AM</time>
+            <time slot="end-time">11:30 AM</time>
+            <slot slot="weather">Overcast</slot>
+            <slot slot="start-temp">48°F</slot>
+            <slot slot="end-temp">56°F</slot>
+            <slot slot="catches">1 Smelt, 2 Surfperch</slot>
+        </trip-details>
+    </body>
 </html>

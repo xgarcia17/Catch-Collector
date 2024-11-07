@@ -6,14 +6,7 @@
     display: contents;
 }
 
-/* old (pre-lab 7) */
 .trip-section-block > dt {
-    grid-column: 1 / 3;
-    margin-left: var(--margin-small);
-}
-
-/* new for slots (lab 7) */
-.trip-section-block > span {
     grid-column: 1 / 3;
     margin-left: var(--margin-small);
 }

@@ -11,13 +11,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap" rel="stylesheet">
     <title>Catch Collector</title>
 </head>
+
+<script type="importmap">
+    {
+      "imports": {
+        "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+      }
+    }
+</script>
+
+<script type="module">
+    // import { define, relayEvent } from "@calpoly/mustang";
+
+    // add event listener for light mode toggle
+    document.body.addEventListener("light-mode:toggle", (event) => {
+        const page = event.currentTarget;
+        const checked = event.detail.checked;
+        page.classList.toggle("light-mode", checked);
+    });
+
+    function toggleLightMode(target, checked) {
+        const customEvent = new CustomEvent(
+            "light-mode:toggle", {
+                bubbles: true,
+                detail: { checked },
+        });
+        console.log("here!");
+        target.dispatchEvent(customEvent);
+    }
+
+    // errors importing from calpoly/mustang
+    window.relayEvent = function(event, customType, detail) {
+        const relay = event.currentTarget;
+        const customEvent = new CustomEvent(customType, {
+            bubbles: true,
+            composed: true,
+            detail
+        });
+
+        console.log(
+            `Relaying event from ${event.type}:`,
+            customEvent
+        );
+
+        relay.dispatchEvent(customEvent);
+        event.stopPropagation();
+    }
+</script>
+
 <body class="page">
     <header>
         <div class="header-title">
             <h1>Catch Collector &nbsp|&nbsp Home</h1>
         </div>
+        <!-- <header-content></header-content> -->
         <div class="header-contents">
-            <label>
+            <light-mode-switch></light-mode-switch>
+            <label onchange="
+                event.stopPropagation();
+                relayEvent(event, 'light-mode', {checked: event.target.checked});
+            ">
                 <input type="checkbox" autocomplete="off" />
                 <h2>&nbspLight View</h2>
             </label>

@@ -13,7 +13,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Catch Collector</title>
     </head>
-
     <script type="importmap">
         {
           "imports": {
@@ -21,7 +20,23 @@
           }
         }
     </script>
-
+    <script type="module">
+    
+        import { Events } from "@calpoly/mustang"
+        window.relayEvent = Events.relay;
+    
+    </script>
+    <script type="module">
+    
+        function toggleLightView(page, checked) {
+            page.classList.toggle("light-view", checked);
+        }
+    
+        document.body.addEventListener("light-view", (event) => 
+            toggleLightView(event.currentTarget, event.detail.checked)
+        );
+    
+    </script>
     <script type="module">
         import { define } from "@calpoly/mustang";
         import { TripDetails } from "../scripts/TripDetails.js";
@@ -38,7 +53,7 @@
                 <h1>&nbsp&nbsp|&nbsp Your Trips</h1>
             </div>
             <div class="header-contents">
-                <label>
+                <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
                     <input type="checkbox" autocomplete="off" />
                     <h2>&nbspLight View</h2>
                 </label>

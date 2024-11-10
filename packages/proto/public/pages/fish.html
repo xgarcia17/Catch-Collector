@@ -11,14 +11,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catch Collector</title>
 </head>
-<body>
+<script type="importmap">
+    {
+      "imports": {
+        "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+      }
+    }
+</script>
+<script type="module">
+    
+    import { Events } from "@calpoly/mustang"
+    window.relayEvent = Events.relay;
+
+</script>
+<script type="module">
+
+    function toggleLightView(page, checked) {
+        page.classList.toggle("light-view", checked);
+    }
+
+    document.body.addEventListener("light-view", (event) => 
+        toggleLightView(event.currentTarget, event.detail.checked)
+    );
+
+</script>
+<body class="page">
     <header>
         <div class="header-title">
             <a href="../index.html"><h1>Catch Collector</h1></a>
             <h1>&nbsp&nbsp|&nbsp Fish Species</h1>
         </div>
         <div class="header-contents">
-            <h2>Menu</h2>
+            <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
+                <input type="checkbox" autocomplete="off" />
+                <h2>&nbspLight View</h2>
+            </label>
             <h2>Xavier G.</h2>
         </div>
     </header>

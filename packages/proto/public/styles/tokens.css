@@ -11,7 +11,7 @@
         --color-table: #0071b6;
     }
     body.page.light-view {
-        --color-background: #ccdde9;
+        --color-background: #f7f9fa;
         --color-large-header-background: #001f86;
 
         --color-large-header: #83a0ff;

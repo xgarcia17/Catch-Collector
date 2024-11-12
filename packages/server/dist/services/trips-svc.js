@@ -18,51 +18,38 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var trips_svc_exports = {};
 __export(trips_svc_exports, {
-  getTrips: () => getTrips
+  default: () => trips_svc_default
 });
 module.exports = __toCommonJS(trips_svc_exports);
-const trips = [
+var import_mongoose = require("mongoose");
+const TripSchema = new import_mongoose.Schema(
   {
-    tripName: "[SERVICE] Laguna Lake",
-    tripDate: /* @__PURE__ */ new Date("2024-9-16"),
-    location: "Laguna Lake, San Luis Obispo, CA",
-    startTime: "8:15 AM",
-    endTime: "11:26 PM",
-    weather: ["Sunny"],
-    startTemp: "56\xB0F",
-    endTemp: "72\xB0F",
-    catches: [
-      "2 Largemouth Bass",
-      "1 Bluegill"
-    ]
+    userID: { type: String, required: true, trim: true },
+    tripName: { type: String, required: true },
+    tripDate: { type: Date, required: true },
+    location: { type: String, required: true },
+    startTime: { type: String, required: true },
+    endTime: { type: String, required: true },
+    weather: [{ type: String, required: true }],
+    startTemp: { type: String, required: true },
+    endTemp: { type: String, required: true },
+    catches: [{ type: String, required: true }]
   },
-  {
-    tripName: "Morro Strand State Beach",
-    tripDate: /* @__PURE__ */ new Date("2024-10-13"),
-    location: "Morro Strand State Beach, Morro Bay, CA",
-    startTime: "11:17 AM",
-    endTime: "1:54 PM",
-    weather: ["Overcast", "Windy"],
-    startTemp: "53\xB0F",
-    endTemp: "65\xB0F",
-    catches: ["3 Surfperch"]
-  },
-  {
-    tripName: "Halloween at Morro Bay",
-    tripDate: /* @__PURE__ */ new Date("2024-10-31"),
-    location: "Morro Strand State Beach, Morro Bay, CA",
-    startTime: "8:00 AM",
-    endTime: "11:34 AM",
-    weather: ["Overcast"],
-    startTemp: "48\xB0F",
-    endTemp: "56\xB0F",
-    catches: ["1 Smelt", "2 Surfperch"]
-  }
-];
+  { collection: "trips" }
+);
+const TripModel = (0, import_mongoose.model)("Trip", TripSchema);
 function getTrips() {
-  return trips;
+  return TripModel.find({ userID: "1" }).then((list) => list).catch((err) => {
+    throw `tripID: 1 Not Found`;
+  });
+  ;
 }
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  getTrips
-});
+function index() {
+  return TripModel.find();
+}
+function getTripsByUserID(userID) {
+  return TripModel.find({ userID }).then((list) => list).catch((err) => {
+    throw `tripID: ${userID} Not Found`;
+  });
+}
+var trips_svc_default = { index, getTripsByUserID, getTrips };

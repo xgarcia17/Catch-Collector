@@ -25,30 +25,33 @@ var import_express = __toESM(require("express"));
 var import_mongo = require("./services/mongo");
 var import_trips = require("./pages/trips");
 var import_trips_svc = __toESM(require("./services/trips-svc"));
+var import_trips2 = __toESM(require("./routes/trips"));
 (0, import_mongo.connect)("catch-collector");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
+app.use(import_express.default.json());
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+app.use("/api/trips", import_trips2.default);
 app.get(
   "/trips",
   (req, res) => {
-    import_trips_svc.default.getTrips().then((data) => {
+    import_trips_svc.default.index().then((data) => {
       const page = new import_trips.TripsPage(data);
       res.set("Content-Type", "text/html").send(page.render());
     });
   }
 );
-app.get("/trips/:userid", (req, res) => {
-  const { userid } = req.params;
-  import_trips_svc.default.getTripsByUserID(userid).then((data) => {
-    const page = new import_trips.TripsPage(data);
+app.get("/trips/:tripid", (req, res) => {
+  const { tripid } = req.params;
+  import_trips_svc.default.getTripByTripID(tripid).then((data) => {
+    const page = new import_trips.TripsPage([data]);
     res.set("Content-Type", "text/html").send(page.render());
   });
 });

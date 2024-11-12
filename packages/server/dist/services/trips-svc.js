@@ -37,19 +37,39 @@ const TripSchema = new import_mongoose.Schema(
   },
   { collection: "trips" }
 );
-const TripModel = (0, import_mongoose.model)("Trip", TripSchema);
-function getTrips() {
-  return TripModel.find({ userID: "1" }).then((list) => list).catch((err) => {
-    throw `tripID: 1 Not Found`;
-  });
-  ;
-}
+const TripModel = (0, import_mongoose.model)("Trips", TripSchema);
 function index() {
-  return TripModel.find();
+  return TripModel.find().then((list) => list).catch((err) => {
+    throw `trip collection Not Found`;
+  });
 }
 function getTripsByUserID(userID) {
   return TripModel.find({ userID }).then((list) => list).catch((err) => {
     throw `tripID: ${userID} Not Found`;
   });
 }
-var trips_svc_default = { index, getTripsByUserID, getTrips };
+function getTripByTripID(tripID) {
+  return TripModel.find({ _id: tripID }).then((list) => list[0]).catch((err) => {
+    throw `tripID: ${tripID} Not Found`;
+  });
+}
+function create(json) {
+  const t = new TripModel(json);
+  return t.save();
+}
+function update(tripID, trip) {
+  return TripModel.findOneAndUpdate({ _id: tripID }, trip, {
+    new: true
+  }).then((updated) => {
+    if (!updated) throw `${tripID} not updated`;
+    else return updated;
+  });
+}
+function remove(tripID) {
+  return TripModel.findOneAndDelete({ _id: tripID }).then(
+    (deleted) => {
+      if (!deleted) throw `${tripID} not deleted`;
+    }
+  );
+}
+var trips_svc_default = { index, getTripByTripID, getTripsByUserID, create, update, remove };

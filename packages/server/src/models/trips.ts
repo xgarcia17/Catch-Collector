@@ -1,5 +1,7 @@
 
 export interface Trip {
+    _id: string,
+    userID: string,
     tripName: string,
     tripDate: Date,
     location: string,

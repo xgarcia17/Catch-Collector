@@ -22,8 +22,10 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_express = __toESM(require("express"));
+var import_mongo = require("./services/mongo");
 var import_trips = require("./pages/trips");
-var import_trips_svc = require("./services/trips-svc");
+var import_trips_svc = __toESM(require("./services/trips-svc"));
+(0, import_mongo.connect)("catch-collector");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -37,8 +39,16 @@ app.listen(port, () => {
 app.get(
   "/trips",
   (req, res) => {
-    const data = (0, import_trips_svc.getTrips)();
-    const page = new import_trips.TripsPage(data);
-    res.set("Content-Type", "text/html").send(page.render());
+    import_trips_svc.default.getTrips().then((data) => {
+      const page = new import_trips.TripsPage(data);
+      res.set("Content-Type", "text/html").send(page.render());
+    });
   }
 );
+app.get("/trips/:userid", (req, res) => {
+  const { userid } = req.params;
+  import_trips_svc.default.getTripsByUserID(userid).then((data) => {
+    const page = new import_trips.TripsPage(data);
+    res.set("Content-Type", "text/html").send(page.render());
+  });
+});

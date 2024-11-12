@@ -18,64 +18,14 @@ const TripSchema = new Schema<Trip>(
     { collection: "trips" }
 );
 
-const TripModel = model<Trip>("Trip", TripSchema);
-
-// const trips: Trip[] = [
-//     {
-//         _id: "1",
-//         userID: "1",
-//         tripName: "[SERVICE] Laguna Lake",
-//         tripDate: new Date("2024-9-16"),
-//         location: "Laguna Lake, San Luis Obispo, CA",
-//         startTime: "8:15 AM",
-//         endTime: "11:26 PM",
-//         weather: ["Sunny"],
-//         startTemp: "56°F",
-//         endTemp: "72°F",
-//         catches: [
-//             "2 Largemouth Bass",
-//             "1 Bluegill"
-//         ]
-//     },
-//     {
-//         _id: "2",
-//         userID: "1",
-//         tripName: "Morro Strand State Beach",
-//         tripDate: new Date("2024-10-13"),
-//         location: "Morro Strand State Beach, Morro Bay, CA",
-//         startTime: "11:17 AM",
-//         endTime: "1:54 PM",
-//         weather: ["Overcast", "Windy"],
-//         startTemp: "53°F",
-//         endTemp: "65°F",
-//         catches: ["3 Surfperch"]
-//     },
-//     {
-//         _id: "3",
-//         userID: "1",
-//         tripName: "Halloween at Morro Bay",
-//         tripDate: new Date("2024-10-31"),
-//         location: "Morro Strand State Beach, Morro Bay, CA",
-//         startTime: "8:00 AM",
-//         endTime: "11:34 AM",
-//         weather: ["Overcast"],
-//         startTemp: "48°F",
-//         endTemp: "56°F",
-//         catches: ["1 Smelt", "2 Surfperch"]
-//     }
-// ];
-
-// default function for development -> all trips for user = 1
-function getTrips(): Promise<Trip[]> {
-    return TripModel.find({ userID : "1" })
-        .then((list) => list)
-        .catch((err) => {
-        throw `tripID: 1 Not Found`;
-        });;
-}
+const TripModel = model<Trip>("Trips", TripSchema);
 
 function index(): Promise<Trip[]> {
-    return TripModel.find();
+    return TripModel.find()
+        .then((list) => list)
+        .catch((err) => {
+            throw `trip collection Not Found`
+        });
 }
   
 function getTripsByUserID(userID: String): Promise<Trip[]> {
@@ -85,5 +35,41 @@ function getTripsByUserID(userID: String): Promise<Trip[]> {
         throw `tripID: ${userID} Not Found`;
         });
 }
+
+function getTripByTripID(tripID: String): Promise<Trip> {
+    return TripModel.find({ _id : tripID })
+        .then((list) => list[0])
+        .catch((err) => {
+        throw `tripID: ${tripID} Not Found`;
+        });
+}
+
+// post new trip post
+function create(json: Trip): Promise<Trip> {
+    const t = new TripModel(json);
+    return t.save();
+}
+
+// update an existing trip post
+function update(
+    tripID: String,
+    trip: Trip
+    ): Promise<Trip> {
+    return TripModel.findOneAndUpdate({ _id : tripID }, trip, {
+        new: true
+    }).then((updated) => {
+        if (!updated) throw `${tripID} not updated`;
+        else return updated as Trip;
+    });
+}
+
+// delete existing trip post
+function remove(tripID: String): Promise<void> {
+    return TripModel.findOneAndDelete({ _id : tripID }).then(
+        (deleted) => {
+        if (!deleted) throw `${tripID} not deleted`;
+        }
+    );
+}
   
-export default { index, getTripsByUserID, getTrips };
+export default { index, getTripByTripID, getTripsByUserID, create, update, remove };

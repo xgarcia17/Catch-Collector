@@ -35,6 +35,7 @@ var import_server = require("@calpoly/mustang/server");
 var import_renderPage = __toESM(require("./renderPage"));
 class TripsPage {
   data;
+  // personal note: called in /server/src/index.ts to get all trips
   constructor(data) {
     this.data = data;
   }
@@ -55,7 +56,6 @@ class TripsPage {
       endTemp,
       catches
     } = trip;
-    console.log(trip);
     const longDateFormatted = new Intl.DateTimeFormat("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" }).format(tripDate);
     const dayName = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(tripDate);
     const shortDateFormatted = `${dayName}, ${tripDate.getMonth() + 1}/${tripDate.getDate()}/${tripDate.getFullYear()}`;
@@ -70,6 +70,8 @@ class TripsPage {
     }
     catchesStr.slice(0, -2);
     return import_server.html`
+        <trip-details class="trip-section-block" src="/api/trips/userID=2>
+        </trip-details>
         <trip-details class="trip-section-block">
             <slot slot="trip-title-text">${tripName}</slot>
             <time slot="trip-title-date">${shortDateFormatted}</time>
@@ -85,9 +87,9 @@ class TripsPage {
         `;
   }
   renderBody() {
-    console.log(`trips = 
+    console.log(`
 
-${this.data}`);
+trips = ${this.data}`);
     const tripsList = this.data.map(
       (trip) => this.renderTrip(trip)
     );

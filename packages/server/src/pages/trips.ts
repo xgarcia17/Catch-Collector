@@ -5,6 +5,7 @@ import renderPage from "./renderPage";
 export class TripsPage {
     data: Array<Trip>;
 
+    // personal note: called in /server/src/index.ts to get all trips
     constructor(data: Array<Trip>) {
         this.data = data;
     }
@@ -28,8 +29,6 @@ export class TripsPage {
             catches
         } = trip;
 
-        console.log(trip);
-
         // format dates
         const longDateFormatted = new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(tripDate);
         const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(tripDate);
@@ -50,6 +49,8 @@ export class TripsPage {
         catchesStr.slice(0, -2);
 
         return html`
+        <trip-details class="trip-section-block" src="/api/trips/userID=2>
+        </trip-details>
         <trip-details class="trip-section-block">
             <slot slot="trip-title-text">${tripName}</slot>
             <time slot="trip-title-date">${shortDateFormatted}</time>
@@ -63,11 +64,23 @@ export class TripsPage {
             <slot slot="catches">${catchesStr}</slot>
         </trip-details>
         `
+        // <trip-details class="trip-section-block">
+        //     <slot slot="trip-title-text">${tripName}</slot>
+        //     <time slot="trip-title-date">${shortDateFormatted}</time>
+        //     <slot slot="location">${location}</slot>
+        //     <time slot="date">${longDateFormatted}</time>
+        //     <time slot="start-time">${startTime}</time>
+        //     <time slot="end-time">${endTime}</time>
+        //     <slot slot="weather">${weatherStr}</slot>
+        //     <slot slot="start-temp">${startTemp}</slot>
+        //     <slot slot="end-temp">${endTemp}</slot>
+        //     <slot slot="catches">${catchesStr}</slot>
+        // </trip-details>
     }
 
     renderBody() {
-        console.log(`trips = \n\n${this.data}`);
-        const tripsList = this.data.map((trip: Trip) => 
+        console.log(`\n\ntrips = ${this.data}`);
+        const tripsList = this.data.map((trip: Trip) =>
             this.renderTrip(trip)
         );
 

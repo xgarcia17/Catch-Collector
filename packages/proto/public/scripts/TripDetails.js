@@ -2,6 +2,37 @@ import { css, html, shadow } from "@calpoly/mustang";
 import reset from "./styles/reset.css.js";
 
 export class TripDetails extends HTMLElement {
+  get src() {
+    return this.getAttribute("src");
+  }
+
+  connectedCallback() {
+    if (this.src) this.hydrate(this.src);
+  }
+
+  hydrate(url) {
+    fetch(url)
+      .then((res) => {
+        if (res.status !== 200) throw `Status: ${res.status}`;
+        return res.json();
+      })
+      .then((json) => this.renderSlots(json))
+      .catch((error) =>
+        console.log(`Failed to render data ${url}:`, error)
+      );
+  }
+
+  renderSlots(json) {
+    const entries = Object.entries(json);
+    const toSlot = ([key, value]) => {
+      // prep key from Model name to slot name
+      html`<slot name="${key}">${value}</slot>`
+    }
+    const fragment = entries.map(toSlot);
+    console.log("in TripDetails.js");
+    this.replaceChildren(...fragment);
+  }
+  
   static template = html`
     <template>
         <dt><slot name="trip-title-text"><em>trip name</em></slot> : <slot name="trip-title-date"><em>shortened trip date</em></slot></dt>

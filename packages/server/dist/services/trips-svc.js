@@ -54,8 +54,8 @@ function getTripByTripID(tripID) {
   });
 }
 function create(json) {
-  const t = new TripModel(json);
-  return t.save();
+  const trip = new TripModel(json);
+  return trip.save();
 }
 function update(tripID, trip) {
   return TripModel.findOneAndUpdate({ _id: tripID }, trip, {

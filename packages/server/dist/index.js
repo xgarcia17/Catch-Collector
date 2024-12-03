@@ -40,15 +40,16 @@ app.listen(port, () => {
 });
 app.use("/api/trips", import_trips2.default);
 app.get(
-  "/trips",
+  "/trips/:userID",
   (req, res) => {
-    import_trips_svc.default.index().then((data) => {
+    const { userID } = req.params;
+    import_trips_svc.default.getTripsByUserID(userID).then((data) => {
       const page = new import_trips.TripsPage(data);
       res.set("Content-Type", "text/html").send(page.render());
     });
   }
 );
-app.get("/trips/:tripid", (req, res) => {
+app.get("/trips/tripID=:tripid", (req, res) => {
   const { tripid } = req.params;
   import_trips_svc.default.getTripByTripID(tripid).then((data) => {
     const page = new import_trips.TripsPage([data]);

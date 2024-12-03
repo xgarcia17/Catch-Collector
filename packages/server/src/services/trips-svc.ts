@@ -32,7 +32,7 @@ function getTripsByUserID(userID: String): Promise<Trip[]> {
     return TripModel.find({ userID : userID })
         .then((list) => list)
         .catch((err) => {
-        throw `tripID: ${userID} Not Found`;
+            throw `tripID: ${userID} Not Found`;
         });
 }
 
@@ -40,14 +40,14 @@ function getTripByTripID(tripID: String): Promise<Trip> {
     return TripModel.find({ _id : tripID })
         .then((list) => list[0])
         .catch((err) => {
-        throw `tripID: ${tripID} Not Found`;
+            throw `tripID: ${tripID} Not Found`;
         });
 }
 
 // post new trip post
 function create(json: Trip): Promise<Trip> {
-    const t = new TripModel(json);
-    return t.save();
+    const trip = new TripModel(json);
+    return trip.save();
 }
 
 // update an existing trip post

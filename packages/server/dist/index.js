@@ -24,6 +24,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var import_express = __toESM(require("express"));
 var import_mongo = require("./services/mongo");
 var import_trips = require("./pages/trips");
+var import_individualTrip = require("./pages/individualTrip");
 var import_trips_svc = __toESM(require("./services/trips-svc"));
 var import_trips2 = __toESM(require("./routes/trips"));
 (0, import_mongo.connect)("catch-collector");
@@ -49,10 +50,22 @@ app.get(
     });
   }
 );
-app.get("/trips/tripID=:tripid", (req, res) => {
-  const { tripid } = req.params;
-  import_trips_svc.default.getTripByTripID(tripid).then((data) => {
-    const page = new import_trips.TripsPage([data]);
-    res.set("Content-Type", "text/html").send(page.render());
-  });
+app.get("/trips", (req, res) => {
+  if (Object.keys(req.query).length === 0) {
+    console.log("rendering all trips because none provided in query");
+    import_trips_svc.default.index().then((data) => {
+      const page = new import_trips.TripsPage(data);
+      res.set("Content-Type", "text/html").send(page.render());
+    });
+  } else {
+    const { tripID } = req.query;
+    if (tripID) {
+      console.log(`
+launching Individual Trip Page with tripID ${tripID}`);
+      const page = new import_individualTrip.IndividualTripPage(tripID);
+      res.set("Content-Type", "text/html").send(page.render());
+    } else {
+      res.status(400).send("Missing required query parameter: userID");
+    }
+  }
 });

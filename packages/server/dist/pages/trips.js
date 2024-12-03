@@ -70,8 +70,6 @@ class TripsPage {
     }
     catchesStr.slice(0, -2);
     return import_server.html`
-        <trip-details class="trip-section-block" src="/api/trips/userID=2>
-        </trip-details>
         <trip-details class="trip-section-block">
             <slot slot="trip-title-text">${tripName}</slot>
             <time slot="trip-title-date">${shortDateFormatted}</time>

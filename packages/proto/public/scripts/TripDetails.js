@@ -11,6 +11,7 @@ export class TripDetails extends HTMLElement {
   }
 
   hydrate(url) {
+    console.log("fetching url in TripDetails.js!")
     fetch(url)
       .then((res) => {
         if (res.status !== 200) throw `Status: ${res.status}`;

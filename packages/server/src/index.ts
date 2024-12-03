@@ -26,10 +26,9 @@ app.listen(port, () => {
 app.use("/api/trips", trips);
 
 // get all trip posts
-app.get(
-  "/trips",
-  (req: Request, res: Response) => {
-    Trips.index().then((data) => {
+app.get("/trips/:userID", (req: Request, res: Response) => {
+    const { userID } = req.params;
+    Trips.getTripsByUserID(userID).then((data) => {
       const page = new TripsPage(data);
       res
         .set("Content-Type", "text/html")

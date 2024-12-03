@@ -53,7 +53,7 @@ app.get("/trips", (req: Request, res: Response) => {
   } else {
       const { tripID } = req.query as { tripID?: string };
       if (tripID) {
-        console.log(`launching Individual Trip Page with tripID ${tripID}`);
+        console.log(`\nlaunching Individual Trip Page with tripID ${tripID}`);
         const page = new IndividualTripPage(tripID);
         res
           .set("Content-Type", "text/html")

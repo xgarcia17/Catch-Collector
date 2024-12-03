@@ -4,21 +4,22 @@ import  Trips  from "../services/trips-svc";
 
 const router = express.Router();
 
-// get entire collection of trip posts (for user)
+// get trip by tripID
 router.get("", (req: Request, res: Response) => {
     // if no query, return all trips
     if (Object.keys(req.query).length === 0) {
+        console.log("don't really want to allow view of all trips, but good for now");
         Trips.index()
             .then((list: Trip[]) => res.json(list))
             .catch((err) => res.status(500).send(err));
     } else {
-        const { userID } = req.query as { userID?: string };
-        if (userID) {
-            Trips.getTripsByUserID(userID)
-                .then((trips: Trip[]) => res.json(trips))
+        const { tripID } = req.query as { tripID?: string };
+        if (tripID) {
+            Trips.getTripByTripID(tripID)
+                .then((trip: Trip) => res.json(trip))
                 .catch((err) => res.status(404).send(err));
         } else {
-            res.status(400).send("Missing required query parameter: userID");
+            res.status(400).send("Missing required query parameter: tripID");
         }
     }
 });

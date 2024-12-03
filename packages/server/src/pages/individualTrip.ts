@@ -17,7 +17,7 @@ export class IndividualTripPage {
     }
 
     renderBody() {
-        console.log(`\n\ntripID = ${this.tripID}`);
+        console.log(`\ntripID = ${this.tripID}`);
 
         return html`
         <body class="page">
@@ -34,7 +34,7 @@ export class IndividualTripPage {
                     <h2>Xavier G.</h2>
                 </div>
             </header>
-            <trip-details class="trip-section-block" src="/api/trips/tripID=${this.tripID}"></trip-details>
+            <trip-details class="trip-section-block" src="/api/trips?tripID=${this.tripID}"></trip-details>
         </body>
         `
     }

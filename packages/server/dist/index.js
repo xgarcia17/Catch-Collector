@@ -60,7 +60,8 @@ app.get("/trips", (req, res) => {
   } else {
     const { tripID } = req.query;
     if (tripID) {
-      console.log(`launching Individual Trip Page with tripID ${tripID}`);
+      console.log(`
+launching Individual Trip Page with tripID ${tripID}`);
       const page = new import_individualTrip.IndividualTripPage(tripID);
       res.set("Content-Type", "text/html").send(page.render());
     } else {

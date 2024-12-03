@@ -36,13 +36,14 @@ var import_trips_svc = __toESM(require("../services/trips-svc"));
 const router = import_express.default.Router();
 router.get("", (req, res) => {
   if (Object.keys(req.query).length === 0) {
+    console.log("don't really want to allow view of all trips, but good for now");
     import_trips_svc.default.index().then((list) => res.json(list)).catch((err) => res.status(500).send(err));
   } else {
-    const { userID } = req.query;
-    if (userID) {
-      import_trips_svc.default.getTripsByUserID(userID).then((trips) => res.json(trips)).catch((err) => res.status(404).send(err));
+    const { tripID } = req.query;
+    if (tripID) {
+      import_trips_svc.default.getTripByTripID(tripID).then((trip) => res.json(trip)).catch((err) => res.status(404).send(err));
     } else {
-      res.status(400).send("Missing required query parameter: userID");
+      res.status(400).send("Missing required query parameter: tripID");
     }
   }
 });

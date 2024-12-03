@@ -49,7 +49,7 @@ app.get(
     });
   }
 );
-app.get("/trips/:tripid", (req, res) => {
+app.get("/trips/tripID=:tripid", (req, res) => {
   const { tripid } = req.params;
   import_trips_svc.default.getTripByTripID(tripid).then((data) => {
     const page = new import_trips.TripsPage([data]);

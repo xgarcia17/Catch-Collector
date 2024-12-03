@@ -51,6 +51,18 @@ export class TripsPage {
         return html`
         <trip-details class="trip-section-block" src="/api/trips/userID=2>
         </trip-details>
+        <trip-details class="trip-section-block">
+            <slot slot="trip-title-text">${tripName}</slot>
+            <time slot="trip-title-date">${shortDateFormatted}</time>
+            <slot slot="location">${location}</slot>
+            <time slot="date">${longDateFormatted}</time>
+            <time slot="start-time">${startTime}</time>
+            <time slot="end-time">${endTime}</time>
+            <slot slot="weather">${weatherStr}</slot>
+            <slot slot="start-temp">${startTemp}</slot>
+            <slot slot="end-temp">${endTemp}</slot>
+            <slot slot="catches">${catchesStr}</slot>
+        </trip-details>
         `
         // <trip-details class="trip-section-block">
         //     <slot slot="trip-title-text">${tripName}</slot>

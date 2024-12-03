@@ -38,9 +38,8 @@ app.get("/trips/:userID", (req: Request, res: Response) => {
 );
 
 // get all trip by tripID
-app.get("/trips/:tripid", (req: Request, res: Response) => {
+app.get("/trips/tripID=:tripid", (req: Request, res: Response) => {
   const { tripid } = req.params;
-
   Trips.getTripByTripID(tripid).then((data) => {
     const page = new TripsPage([data]);
     res

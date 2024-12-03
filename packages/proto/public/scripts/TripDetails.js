@@ -23,14 +23,53 @@ export class TripDetails extends HTMLElement {
       );
   }
 
+  splitWords(dataWord) {
+    let resWord = "";
+    for (let i = 0; i < dataWord.length; i ++) {
+      if (dataWord[i] === dataWord[i].toUpperCase() && dataWord[i] !== dataWord[i].toLowerCase()) {
+        resWord += "-";
+        resWord += dataWord[i].toLowerCase();
+      } else {
+        resWord += dataWord[i];
+      }
+    }
+    return resWord;
+  }
+
   renderSlots(json) {
     const entries = Object.entries(json);
+    console.log(`entires:\n${entries}`);
     const toSlot = ([key, value]) => {
       // prep key from Model name to slot name
-      html`<slot name="${key}">${value}</slot>`
+      console.log(`${key} : ${value}\n`);
+      let htmlName = "";
+      const splittableWords = ["startTime", "endTime", "startTemp", "endTemp"];
+      if (key === "tripName") {
+        htmlName = "trip-title-text";
+      } else if (splittableWords.includes(key)) {
+        //console.log("here");
+        htmlName = this.splitWords(key);
+      } else if (key === "tripDate") {
+        const tripDate = new Date(value);
+        const longDateFormatted = new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(tripDate);
+        const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(tripDate);
+        const shortDateFormatted = `${dayName}, ${tripDate.getMonth()+1}/${tripDate.getDate()}/${tripDate.getFullYear()}`;
+        return html`<time slot="trip-title-date">${shortDateFormatted}</time>
+                    <time slot="date">${longDateFormatted}</time>`;
+      } else {
+        htmlName = key;
+      }
+
+      console.log(`htmlName : ${htmlName}`);
+
+      if (key.includes("Time")) {
+        return html`<time slot="${htmlName}">${value}</time>`;
+      } else {
+        return html`<slot slot="${htmlName}">${value}</slot>`;
+      }
     }
     const fragment = entries.map(toSlot);
-    console.log("in TripDetails.js");
+    console.log(`fragment: ${fragment}`);
     this.replaceChildren(...fragment);
   }
   

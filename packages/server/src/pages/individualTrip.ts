@@ -24,7 +24,7 @@ export class IndividualTripPage {
             <header>
                 <div class="header-title">
                     <a href="/index.html"><h1>Catch Collector</h1></a>
-                    <h1>&nbsp&nbsp|&nbsp Your Trips</h1>
+                    <h1>&nbsp&nbsp|&nbsp Remember This Trip?</h1>
                 </div>
                 <div class="header-contents">
                     <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">

@@ -34,14 +34,24 @@ module.exports = __toCommonJS(trips_exports);
 var import_express = __toESM(require("express"));
 var import_trips_svc = __toESM(require("../services/trips-svc"));
 const router = import_express.default.Router();
-router.get("/", (_, res) => {
-  import_trips_svc.default.index().then((list) => res.json(list)).catch((err) => res.status(500).send(err));
+router.get("", (req, res) => {
+  if (Object.keys(req.query).length === 0) {
+    console.log("don't really want to allow view of all trips, but good for now");
+    import_trips_svc.default.index().then((list) => res.json(list)).catch((err) => res.status(500).send(err));
+  } else {
+    const { tripID } = req.query;
+    if (tripID) {
+      import_trips_svc.default.getTripByTripID(tripID).then((trip) => res.json(trip)).catch((err) => res.status(404).send(err));
+    } else {
+      res.status(400).send("Missing required query parameter: tripID");
+    }
+  }
 });
-router.get("/userID=:userID", (req, res) => {
+router.get("/:userID", (req, res) => {
   const { userID } = req.params;
   import_trips_svc.default.getTripsByUserID(userID).then((trips) => res.json(trips)).catch((err) => res.status(404).send(err));
 });
-router.get("/:tripID", (req, res) => {
+router.get("/tripID=:tripID", (req, res) => {
   const { tripID } = req.params;
   import_trips_svc.default.getTripByTripID(tripID).then((trip) => res.json(trip)).catch((err) => res.status(404).send(err));
 });
@@ -51,7 +61,7 @@ router.post("/", (req, res) => {
     (trip) => res.status(201).json(trip)
   ).catch((err) => res.status(500).send(err));
 });
-router.put("/:tripid", (req, res) => {
+router.put("/:tripID", (req, res) => {
   const { tripID } = req.params;
   const newTrip = req.body;
   import_trips_svc.default.update(tripID, newTrip).then((trip) => res.json(trip)).catch((err) => res.status(404).end());

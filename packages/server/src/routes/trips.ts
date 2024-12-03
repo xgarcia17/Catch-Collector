@@ -4,15 +4,28 @@ import  Trips  from "../services/trips-svc";
 
 const router = express.Router();
 
-// get entire collection of trip posts
-router.get("/", (_, res: Response) => {
-    Trips.index()
-      .then((list: Trip[]) => res.json(list))
-      .catch((err) => res.status(500).send(err));
-  });
+// get trip by tripID
+router.get("", (req: Request, res: Response) => {
+    // if no query, return all trips
+    if (Object.keys(req.query).length === 0) {
+        console.log("don't really want to allow view of all trips, but good for now");
+        Trips.index()
+            .then((list: Trip[]) => res.json(list))
+            .catch((err) => res.status(500).send(err));
+    } else {
+        const { tripID } = req.query as { tripID?: string };
+        if (tripID) {
+            Trips.getTripByTripID(tripID)
+                .then((trip: Trip) => res.json(trip))
+                .catch((err) => res.status(404).send(err));
+        } else {
+            res.status(400).send("Missing required query parameter: tripID");
+        }
+    }
+});
   
-// get trips by userID
-router.get("/userID=:userID", (req: Request, res: Response) => {
+// // get trips by userID
+router.get("/:userID", (req: Request, res: Response) => {
     const { userID } = req.params;
 
     Trips.getTripsByUserID(userID)
@@ -21,7 +34,7 @@ router.get("/userID=:userID", (req: Request, res: Response) => {
 });
 
 // get trips by tripID
-router.get("/:tripID", (req: Request, res: Response) => {
+router.get("/tripID=:tripID", (req: Request, res: Response) => {
     const { tripID } = req.params;
 
     Trips.getTripByTripID(tripID)
@@ -41,7 +54,7 @@ router.post("/", (req: Request, res: Response) => {
 });
 
 // update an existing trip post
-router.put("/:tripid", (req: Request, res: Response) => {
+router.put("/:tripID", (req: Request, res: Response) => {
     const { tripID } = req.params;
     const newTrip = req.body;
 

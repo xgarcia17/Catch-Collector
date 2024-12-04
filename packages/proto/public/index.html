@@ -20,15 +20,20 @@
 </script>
 <script type="module">
     
-    import { Events, Auth } from "@calpoly/mustang"
+    import { Events, Auth, define } from "@calpoly/mustang";
+    import { HeaderElement } from "./scripts/header.js";
+
     window.relayEvent = Events.relay;
     
     define({
+        "custom-header": HeaderElement,
         "mu-auth": Auth.Provider
     });
 
+    HeaderElement.initializeOnce();
+
 </script>
-<script type="module">
+<!-- <script type="module">
 
     function toggleLightView(page, checked) {
         page.classList.toggle("light-view", checked);
@@ -38,11 +43,12 @@
         toggleLightView(event.currentTarget, event.detail.checked)
     );
 
-</script>
+</script> -->
 
 <body class="page">
     <mu-auth provides="catch-collector:auth">
-        <header>
+        <custom-header></custom-header>
+        <!-- <header>
             <div class="header-title">
                 <h1>Catch Collector &nbsp|&nbsp Home</h1>
             </div>
@@ -53,9 +59,9 @@
                 </label>
                 <h2>Xavier G.</h2>
             </div>
-        </header>
+        </header> -->
         <div class="home-page-contents">
-            <h3 class="section-title">Welcome, Xavier G.</h3>
+            <h3 class="section-title">Welcome.</h3>
             <ul class="main-page-list">
                 <li><h3><a href="./pages/trips.html">Trips</a></li>
                 <li><h3><a href="./pages/catches.html">Catches</a></h3></li>

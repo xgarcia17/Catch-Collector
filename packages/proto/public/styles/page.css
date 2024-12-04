@@ -5,10 +5,7 @@
     grid-template-columns: [start] 1fr 1fr 1fr 1fr [end];
     grid-row-gap: var(--margin-small);
 }
-/* .page > header {
-    grid-column: start / end;
-    margin-bottom: -1 * var(--margin-small);
-} */
+
 mu-auth {
     grid-column: start / end;
     width: 100%;

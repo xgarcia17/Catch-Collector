@@ -7,33 +7,18 @@ export class HeaderElement extends HTMLElement {
     <template>
         <header>
             <div class="header-title">
-                <h1>Catch Collector &nbsp|&nbsp <slot name="page-title">page title</slot></h1>
+                <h1>Catch Collector &nbsp|&nbsp <slot name="page-title"><em>page title</em></slot></h1>
             </div>
             <div class="header-contents">
                 <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
                     <input type="checkbox" autocomplete="off" />
                     <h2>&nbspLight View</h2>
                 </label>
-                <slot name="userid"><h2>Xavier G.</h2></slot>
+                <h2><slot name="userid"><em>username</em></slot></h2>
             </div>
         </header>
     </template>
     `;
-
-    // <template>
-    //     <header>
-    //         <div class="header-title">
-    //             <h1>Catch Collector &nbsp|&nbsp <slot name="page-title">page title</slot></h1>
-    //         </div>
-    //         <div class="header-contents">
-    //             <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
-    //                 <input type="checkbox" autocomplete="off" />
-    //                 <h2>&nbspLight View</h2>
-    //             </label>
-    //             <slot name="userid"><h2>Xavier G.</h2></slot>
-    //         </div>
-    //     </header>
-    // </template>
 
     static styles = css`
         header {

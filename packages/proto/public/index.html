@@ -47,7 +47,10 @@
 
 <body class="page">
     <mu-auth provides="catch-collector:auth">
-        <custom-header></custom-header>
+        <custom-header>
+            <slot slot="page-title">Home</slot>
+            <slot slot="userid">Xavier G.</slot>
+        </custom-header>
         <!-- <header>
             <div class="header-title">
                 <h1>Catch Collector &nbsp|&nbsp Home</h1>
@@ -61,7 +64,7 @@
             </div>
         </header> -->
         <div class="home-page-contents">
-            <h3 class="section-title">Welcome.</h3>
+            <h3 class="section-title">Welcome! Let's go fishing!</h3>
             <ul class="main-page-list">
                 <li><h3><a href="./pages/trips.html">Trips</a></li>
                 <li><h3><a href="./pages/catches.html">Catches</a></h3></li>

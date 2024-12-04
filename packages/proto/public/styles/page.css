@@ -5,9 +5,12 @@
     grid-template-columns: [start] 1fr 1fr 1fr 1fr [end];
     grid-row-gap: var(--margin-small);
 }
-.page > header {
+/*.page >*/ header {
     grid-column: start / end;
     margin-bottom: -1 * var(--margin-small);
+}
+.page > mu-auth {
+    grid-column: start / end;
 }
 
 /* Icons */

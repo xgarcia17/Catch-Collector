@@ -20,8 +20,12 @@
 </script>
 <script type="module">
     
-    import { Events } from "@calpoly/mustang"
+    import { Events, Auth } from "@calpoly/mustang"
     window.relayEvent = Events.relay;
+    
+    define({
+        "mu-auth": Auth.Provider
+    });
 
 </script>
 <script type="module">
@@ -37,27 +41,29 @@
 </script>
 
 <body class="page">
-    <header>
-        <div class="header-title">
-            <h1>Catch Collector &nbsp|&nbsp Home</h1>
+    <mu-auth provides="catch-collector:auth">
+        <header>
+            <div class="header-title">
+                <h1>Catch Collector &nbsp|&nbsp Home</h1>
+            </div>
+            <div class="header-contents">
+                <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
+                    <input type="checkbox" autocomplete="off" />
+                    <h2>&nbspLight View</h2>
+                </label>
+                <h2>Xavier G.</h2>
+            </div>
+        </header>
+        <div class="home-page-contents">
+            <h3 class="section-title">Welcome, Xavier G.</h3>
+            <ul class="main-page-list">
+                <li><h3><a href="./pages/trips.html">Trips</a></li>
+                <li><h3><a href="./pages/catches.html">Catches</a></h3></li>
+                <li><h3><a href="./pages/gear.html">Gear</a></h3></li>
+                <li><h3><a href="./pages/fish.html">Fish</a></h3></li>
+                <li><h3><a href="./pages/waters.html">Waters</a></h3></li>
+            </ul>
         </div>
-        <div class="header-contents">
-            <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
-                <input type="checkbox" autocomplete="off" />
-                <h2>&nbspLight View</h2>
-            </label>
-            <h2>Xavier G.</h2>
-        </div>
-    </header>
-    <div class="home-page-contents">
-        <h3 class="section-title">Welcome, Xavier G.</h3>
-        <ul class="main-page-list">
-            <li><h3><a href="./pages/trips.html">Trips</a></li>
-            <li><h3><a href="./pages/catches.html">Catches</a></h3></li>
-            <li><h3><a href="./pages/gear.html">Gear</a></h3></li>
-            <li><h3><a href="./pages/fish.html">Fish</a></h3></li>
-            <li><h3><a href="./pages/waters.html">Waters</a></h3></li>
-        </ul>
-    </div>
+    </mu-auth>
 </body>
 </html>

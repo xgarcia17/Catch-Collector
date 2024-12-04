@@ -27,6 +27,7 @@ var import_trips = require("./pages/trips");
 var import_individualTrip = require("./pages/individualTrip");
 var import_trips_svc = __toESM(require("./services/trips-svc"));
 var import_trips2 = __toESM(require("./routes/trips"));
+var import_auth = __toESM(require("./routes/auth"));
 (0, import_mongo.connect)("catch-collector");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
@@ -39,6 +40,7 @@ app.get("/hello", (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+app.use("/auth", import_auth.default);
 app.use("/api/trips", import_trips2.default);
 app.get(
   "/trips/:userID",

@@ -5,7 +5,9 @@ import { IndividualTripPage } from "./pages/individualTrip";
 import { Trip } from "models";
 import Trips from "./services/trips-svc";
 
+// importing routes
 import trips from "./routes/trips";
+import auth from "./routes/auth";
 
 connect("catch-collector");
 const app = express();
@@ -23,6 +25,8 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
+// mount auth API
+app.use("/auth", auth);
 
 // mount trips API
 app.use("/api/trips", trips);
@@ -62,7 +66,6 @@ app.get("/trips", (req: Request, res: Response) => {
           res.status(400).send("Missing required query parameter: userID");
       }
   }
-
 
   // const { tripID } = req.params;
   // console.log(`launching Individual Trip Page with tripID ${tripID}`);

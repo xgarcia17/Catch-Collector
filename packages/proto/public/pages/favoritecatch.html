@@ -38,13 +38,10 @@
     <mu-auth provides="catch-collector:auth">
         <custom-header>
             <slot slot="page-title">Favorite Catch</slot>
-            <slot slot="image">
-                <svg class="icon">
-                    <use href="../icons/catches.svg#icon-catch" />
-                </svg>
-            </slot>
         </custom-header>
-        <favorite-catch class="table-container"></favorite-catch>
+        <favorite-catch class="table-container">
+            <slot name="location">your mom's house</slot>
+        </favorite-catch>
     </mu-auth>
 </body>
 </html>

@@ -5,7 +5,8 @@ const defaults = {
         "/styles/reset.css",
         "/styles/tokens.css",
         "/styles/page.css",
-        "/styles/trips.css"
+        "/styles/trips.css",
+        "/styles/favorite.css",
     ],
     styles: [],
     scripts: [

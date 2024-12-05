@@ -102,6 +102,13 @@ table {
     text-align: center;
 }
 
+.catch-description {
+    padding-top: var(--margin-small);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Header Text */
 header {
     grid-column: start / end;

@@ -18,17 +18,6 @@ const FavoriteCatchSchema = new Schema<FavoriteCatch>(
 
 const FavoriteCatchModel = model<FavoriteCatch>("Favorites", FavoriteCatchSchema);
 
-// const favoriteCatch = {
-//   userID: "2",
-//   title: "My Favorite Catch",
-//   date: new Date("2024-10-14"),
-//   location: "Avila Beach",
-//   species: "surfperch",
-//   gear: "spinning rod",
-//   rig: "Carolina rig",
-//   description: "I got my first surfperch!",
-// };
-
 
 function index(): Promise<FavoriteCatch[]> {
   return FavoriteCatchModel.find();

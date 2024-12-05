@@ -26,10 +26,47 @@ export class FavoriteCatch extends HTMLElement {
         <div class="catch-description">
           <p><slot name="description">This catch was so epic because I saw a harbor seal pop right out of the water right in front of me!</slot></p>
         </div>
+        <div class="favorite-form-container">
+          <div class="favorite-form">
+            <h3 class="favorite-form-title">Edit your favorite catch details</h3>
+            <mu-form class="edit">
+              <label>
+                <span>Title</span>
+                <input name="title" />
+              </label>
+              <label>
+                <span>Date</span>
+                <input name="date" />
+              </label>
+              <label>
+                <span>Location</span>
+                <input name="location" />
+              </label>
+              <label>
+                <span>Species</span>
+                <input name="species" />
+              </label>
+              <label>
+                <span>Gear</span>
+                <input name="gear" />
+              </label>
+              <label>
+                <span>Rig</span>
+                <input name="rig" />
+              </label>
+              <label>
+                <span>Description</span>
+                <input name="description" />
+              </label>
+            </mu-form>
+          </div>
+        </div>
     </template>
   `;
 
-  static styles = css ``;
+  static styles = css `
+   
+  `;
   
   constructor() {
     super();

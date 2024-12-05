@@ -51,7 +51,6 @@ export class LoginPage {
                         <input type="checkbox" autocomplete="off" />
                         <h2>&nbspLight View</h2>
                     </label>
-                    <h2>Xavier G.</h2>
                 </div>
                 <main class="page">
                   <login-form api="/auth/login">

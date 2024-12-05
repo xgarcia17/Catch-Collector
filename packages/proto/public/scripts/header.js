@@ -14,7 +14,13 @@ export class HeaderElement extends HTMLElement {
                     <input type="checkbox" autocomplete="off" />
                     <h2>&nbspLight View</h2>
                 </label>
-                <h2><slot name="userid"><em>username</em></slot></h2>
+                <h2><span id="userid"></span></h2>
+                <h2 class="when-signed-in">
+                    <a id="signout"><h2>Log Out</h2></a>
+                </h2>
+                <h2 class="when-signed-out">
+                    <a id="signin" href="/login"><h2>Log In</h2></a>
+                </h2>
             </div>
         </header>
     </template>
@@ -66,6 +72,14 @@ export class HeaderElement extends HTMLElement {
         header h2 {
             color: var(--color-large-header);
         }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        a:hover {
+            font-size: 1.1em;
+        }
     `;
 
     get userid() {
@@ -75,10 +89,12 @@ export class HeaderElement extends HTMLElement {
     set userid(id) {
         if (id === "anonymous") {
             this._userid.textContent = "";
-            this._signout.disabled = true;
+            this._signin.textContent = "Log In";
+            this._signout.textContent = "";
         } else {
             this._userid.textContent = id;
-            this._signout.disabled = false;
+            this._signin.textContent = "";
+            this._signout.textContent = "Log Out";
         }
     }
 
@@ -92,6 +108,7 @@ export class HeaderElement extends HTMLElement {
         this._userid = this.shadowRoot.querySelector("#userid");
 
         this._signout = this.shadowRoot.querySelector("#signout");
+        this._signin = this.shadowRoot.querySelector("#signin");
 
         this._signout.addEventListener("click", (event) =>
             Events.relay(event, "auth:message", ["auth/signout"])

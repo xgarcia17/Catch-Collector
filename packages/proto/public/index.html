@@ -33,36 +33,12 @@
     HeaderElement.initializeOnce();
 
 </script>
-<!-- <script type="module">
-
-    function toggleLightView(page, checked) {
-        page.classList.toggle("light-view", checked);
-    }
-
-    document.body.addEventListener("light-view", (event) => 
-        toggleLightView(event.currentTarget, event.detail.checked)
-    );
-
-</script> -->
 
 <body class="page">
     <mu-auth provides="catch-collector:auth">
         <custom-header>
             <slot slot="page-title">Home</slot>
-            <slot slot="userid">Xavier G.</slot>
         </custom-header>
-        <!-- <header>
-            <div class="header-title">
-                <h1>Catch Collector &nbsp|&nbsp Home</h1>
-            </div>
-            <div class="header-contents">
-                <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
-                    <input type="checkbox" autocomplete="off" />
-                    <h2>&nbspLight View</h2>
-                </label>
-                <h2>Xavier G.</h2>
-            </div>
-        </header> -->
         <div class="home-page-contents">
             <h3 class="section-title">Welcome! Let's go fishing!</h3>
             <ul class="main-page-list">

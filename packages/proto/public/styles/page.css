@@ -5,10 +5,15 @@
     grid-template-columns: [start] 1fr 1fr 1fr 1fr [end];
     grid-row-gap: var(--margin-small);
 }
-.page > header {
+
+mu-auth {
+    grid-column: start / end;
+    width: 100%;
+}
+custom-header {
     grid-column: start / end;
     margin-bottom: -1 * var(--margin-small);
-}
+} 
 
 /* Icons */
 svg.icon {
@@ -99,6 +104,8 @@ table {
 
 /* Header Text */
 header {
+    grid-column: start / end;
+    margin-bottom: -1 * var(--margin-small);
     color: var(--color-large-header);
     background-color: var(--color-large-header-background);
     padding: var(--padding-small);

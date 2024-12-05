@@ -31,24 +31,19 @@ const defaults = {
   ],
   styles: [],
   scripts: [
-    `
-        import { define } from "@calpoly/mustang";
+    `      
+        import { Events, Auth, define } from "@calpoly/mustang";
         import { TripDetails } from "/scripts/TripDetails.js";
-        import { Events } from "@calpoly/mustang"
+        import { HeaderElement } from "../scripts/header.js";
 
         window.relayEvent = Events.relay;
 
         define({
-        "trip-details": TripDetails
+          "trip-details": TripDetails,
+          "custom-header": HeaderElement,
+          "mu-auth": Auth.Provider
         });
-
-        function toggleLightView(page, checked) {
-            page.classList.toggle("light-view", checked);
-        }
-    
-        document.body.addEventListener("light-view", (event) => 
-            toggleLightView(event.currentTarget, event.detail.checked)
-        );
+        HeaderElement.initializeOnce();
         `
   ],
   googleFontURL: "https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap",

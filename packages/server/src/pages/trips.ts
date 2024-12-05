@@ -72,20 +72,12 @@ export class TripsPage {
 
         return html`
         <body class="page">
-            <header>
-                <div class="header-title">
-                    <a href="/index.html"><h1>Catch Collector</h1></a>
-                    <h1>&nbsp&nbsp|&nbsp Your Trips</h1>
-                </div>
-                <div class="header-contents">
-                    <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
-                        <input type="checkbox" autocomplete="off" />
-                        <h2>&nbspLight View</h2>
-                    </label>
-                    <h2>Xavier G.</h2>
-                </div>
-            </header>
-            ${tripsList}
+            <mu-auth provides="catch-collector:auth">
+                <custom-header>
+                    <slot slot="page-title">Your Trips</slot>
+                </custom-header>
+                ${tripsList}
+            </mu-auth>
         </body>
         `
     }

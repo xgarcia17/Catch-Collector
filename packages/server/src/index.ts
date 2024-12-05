@@ -1,11 +1,14 @@
 import express, { Request, Response } from "express";
 import { connect } from "./services/mongo";
+import { LoginPage } from "./pages/auth";
 import { TripsPage } from "./pages/trips";
 import { IndividualTripPage } from "./pages/individualTrip";
 import { Trip } from "models";
 import Trips from "./services/trips-svc";
 
+// importing routes
 import trips from "./routes/trips";
+import auth, { authenticateUser } from "./routes/auth";
 
 connect("catch-collector");
 const app = express();
@@ -23,9 +26,11 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
+// mount auth API
+app.use("/auth", auth);
 
 // mount trips API
-app.use("/api/trips", trips);
+app.use("/api/trips", authenticateUser, trips);
 
 // get all trip posts by userID
 app.get("/trips/:userID", (req: Request, res: Response) => {
@@ -62,20 +67,10 @@ app.get("/trips", (req: Request, res: Response) => {
           res.status(400).send("Missing required query parameter: userID");
       }
   }
+});
 
-
-  // const { tripID } = req.params;
-  // console.log(`launching Individual Trip Page with tripID ${tripID}`);
-  // const page = new IndividualTripPage(tripID);
-  // res
-  //   .set("Content-Type", "text/html")
-  //   .send(page.render());
-
-  // const { tripid } = req.params;
-  // Trips.getTripByTripID(tripid).then((data) => {
-  //   const page = new TripsPage([data]);
-  //   res
-  //     .set("Content-Type", "text/html")
-  //     .send(page.render());
-  // });
+// auth route for login page
+app.get("/login", (req: Request, res: Response) => {
+  const page = new LoginPage();
+  res.set("Content-Type", "text/html").send(page.render());
 });

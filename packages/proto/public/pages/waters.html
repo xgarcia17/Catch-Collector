@@ -20,71 +20,59 @@
     }
 </script>
 <script type="module">
-    
-    import { Events } from "@calpoly/mustang"
+    import { Events, define, Auth } from "@calpoly/mustang";
+    import { HeaderElement } from "../scripts/header.js";
+
     window.relayEvent = Events.relay;
 
-</script>
-<script type="module">
+    define({
+        "custom-header": HeaderElement,
+        "mu-auth": Auth.Provider
+    });
 
-    function toggleLightView(page, checked) {
-        page.classList.toggle("light-view", checked);
-    }
-
-    document.body.addEventListener("light-view", (event) => 
-        toggleLightView(event.currentTarget, event.detail.checked)
-    );
-
+    HeaderElement.initializeOnce();
 </script>
 <body class="page">
-    <header>
-        <div class="header-title">
-            <a href="../index.html"><h1>Catch Collector</h1></a>
-            <h1>&nbsp&nbsp|&nbsp Waters</h1>
+    <mu-auth provides="catch-collector:auth">
+        <custom-header>
+            <slot slot="page-title">Waters</slot>
+        </custom-header>
+        <div class="section-titles">
+            <h3>Freshwater</h3>
+            <h3>Saltwater</h3>
         </div>
-        <div class="header-contents">
-            <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
-                <input type="checkbox" autocomplete="off" />
-                <h2>&nbspLight View</h2>
-            </label>
-            <h2>Xavier G.</h2>
-        </div>
-    </header>
-    <div class="section-titles">
-        <h3>Freshwater</h3>
-        <h3>Saltwater</h3>
-    </div>
-    <ul class="freshwater-section">
-        <div class="water-content">
-            <h4>Laguna Lake</h4>
-            <div class="water-description">
-                <dd><strong>Body Type:</strong> Lake</dd>
-                <dd><strong>Location:</strong> San Luis Obipo, CA</dd>
+        <ul class="freshwater-section">
+            <div class="water-content">
+                <h4>Laguna Lake</h4>
+                <div class="water-description">
+                    <dd><strong>Body Type:</strong> Lake</dd>
+                    <dd><strong>Location:</strong> San Luis Obipo, CA</dd>
+                </div>
             </div>
-        </div>
-        <div class="water-content">
-            <h4>Lake Nacimiento</h4>
-            <div class="water-description">
-                <dd><strong>Body Type:</strong> Lake</dd>
-                <dd><strong>Location:</strong> Paso Robles, CA</dd>
+            <div class="water-content">
+                <h4>Lake Nacimiento</h4>
+                <div class="water-description">
+                    <dd><strong>Body Type:</strong> Lake</dd>
+                    <dd><strong>Location:</strong> Paso Robles, CA</dd>
+                </div>
             </div>
-        </div>
-    </ul>
-    <ul class="saltwater-section">
-        <div class="water-content">
-            <h4>Avila Beach Public Pier</h4>
-            <div class="water-description">
-                <dd><strong>Body Type:</strong> Ocean Pier</dd>
-                <dd><strong>Location:</strong> Avila Beach, CA</dd>
+        </ul>
+        <ul class="saltwater-section">
+            <div class="water-content">
+                <h4>Avila Beach Public Pier</h4>
+                <div class="water-description">
+                    <dd><strong>Body Type:</strong> Ocean Pier</dd>
+                    <dd><strong>Location:</strong> Avila Beach, CA</dd>
+                </div>
             </div>
-        </div>
-        <div class="water-content">
-            <h4>Morro Strand State Beach</h4>
-            <div class="water-description">
-                <dd><strong>Body Type:</strong> Ocean Beach</dd>
-                <dd><strong>Location:</strong> Morro Bay, CA</dd>
+            <div class="water-content">
+                <h4>Morro Strand State Beach</h4>
+                <div class="water-description">
+                    <dd><strong>Body Type:</strong> Ocean Beach</dd>
+                    <dd><strong>Location:</strong> Morro Bay, CA</dd>
+                </div>
             </div>
-        </div>
-    </ul>
+        </ul>
+    </mu-auth>
 </body>
 </html>

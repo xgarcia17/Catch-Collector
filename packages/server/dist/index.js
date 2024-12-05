@@ -80,7 +80,7 @@ app.get("/login", (req, res) => {
   const page = new import_auth.LoginPage();
   res.set("Content-Type", "text/html").send(page.render());
 });
-app.get("/favorite/:userID", (req, res) => {
+app.get("/favorites/:userID", (req, res) => {
   const { userID } = req.params;
   import_favorite_catch_svc.default.get(userID).then((data) => {
     const page = new import_favoriteCatch.FavoriteCatchPage(data);

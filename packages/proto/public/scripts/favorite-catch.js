@@ -2,6 +2,37 @@ import { css, html, shadow, Form } from "@calpoly/mustang";
 import reset from "./styles/reset.css.js";
 
 export class FavoriteCatch extends HTMLElement {
+
+  get src() {
+    return this.getAttribute("src");
+  }
+
+  connectedCallback() {
+    if (this.src) this.hydrate(this.src);
+  }
+
+  hydrate(url) {
+    fetch(url)
+      .then((res) => {
+        if (res.status !== 200) throw `Status: ${res.status}`;
+        return res.json();
+      })
+      .then((json) => this.renderSlots(json))
+      .catch((error) =>
+        console.log(`Failed to render data ${url}:`, error)
+      );
+  }
+
+  renderSlots(json) {
+    const entries = Object.entries(json);
+    const toSlot = ([key, value]) => {
+      if (key === "date") return html`<time slot="${key}">${value}</time>`
+      else return html`<span slot="${key}">${value}</span>`
+    }
+    const fragment = entries.map(toSlot);
+    this.replaceChildren(...fragment);
+  }
+
   static template = html`
     <template>
         <h3 class="table-title"><slot name="title">My Favorite Catch</slot></h3>

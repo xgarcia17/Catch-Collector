@@ -83,7 +83,7 @@ app.get("/login", (req: Request, res: Response) => {
 
 
 // for favorite catch
-app.get("/favorite/:userID", (req: Request, res: Response) => {
+app.get("/favorites/:userID", (req: Request, res: Response) => {
   const { userID } = req.params;
 
   Favorites.get(userID).then((data) => {

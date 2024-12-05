@@ -24,17 +24,6 @@ router.post("/", (req: Request, res: Response) => {
         .catch((err) => res.status(500).send(err));
 });
 
-// update an existing trip post
-// router.put("/:userID", (req: Request, res: Response) => {
-//     const { userID } = req.params;
-//     const newFav = req.body;
-
-//     Favorites
-//         .update(userID, newFav)
-//         .then((fav: FavoriteCatch) => res.json(fav))
-//         .catch((err) => res.status(404).end());
-// });
-
 // delete an existing trip post
 router.delete("/:userID", (req: Request, res: Response) => {
     const { userID } = req.params;

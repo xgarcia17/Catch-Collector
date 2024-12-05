@@ -3,14 +3,11 @@ import { connect } from "./services/mongo";
 import { LoginPage } from "./pages/auth";
 import { TripsPage } from "./pages/trips";
 import { IndividualTripPage } from "./pages/individualTrip";
-import { FavoriteCatchPage } from "./pages/favoriteCatch";
-import { Trip } from "models";
+import { NewTripFormPage } from "./pages/newTrip";
 import Trips from "./services/trips-svc";
-import Favorites from "./services/favorite-catch-svc";
 
 // importing routes
 import trips from "./routes/trips";
-import favorites from "./routes/favorites";
 import auth, { authenticateUser } from "./routes/auth";
 
 connect("catch-collector");
@@ -34,9 +31,6 @@ app.use("/auth", auth);
 
 // mount trips API
 app.use("/api/trips", authenticateUser, trips);
-
-// mount favorites API
-app.use("/api/favorites", authenticateUser, favorites);
 
 // get all trip posts by userID
 app.get("/trips/:userID", (req: Request, res: Response) => {
@@ -75,21 +69,14 @@ app.get("/trips", (req: Request, res: Response) => {
   }
 });
 
+// get new trip page
+app.get("/new-trip/", (req: Request, res: Response) => {
+  const page = new NewTripFormPage();
+  res.set("Content-Type", "text/html").send(page.render());
+});
+
 // auth route for login page
 app.get("/login", (req: Request, res: Response) => {
   const page = new LoginPage();
   res.set("Content-Type", "text/html").send(page.render());
-});
-
-
-// for favorite catch
-app.get("/favorites/:userID", (req: Request, res: Response) => {
-  const { userID } = req.params;
-
-  Favorites.get(userID).then((data) => {
-    const page = new FavoriteCatchPage(data);
-    res
-      .set("Content-Type", "text/html")
-      .send(page.render());
-  });
 });

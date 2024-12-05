@@ -10,21 +10,31 @@ const defaults = {
     ],
     styles: [
         css`
-        .favorite-form-title {
+        .form-container {
+            padding-top: -1 * var(--margin-tiny);
+            margin-left: var(--margin-small);
+            margin-right: var(--margin-small);
+            margin-bottom: var(--margin-small);
+            grid-column: 1 / 5;
+        }
+
+        .new-trip-form-title {
             text-align: center;
         }
-        .favorite-form-container {
+        
+        .new-trip-form-container {
             padding: var(--margin-tiny); /* Add spacing inside the container */
             background-color: var(--color-large-header-background); /* Light gray background */
             border-radius: 8px; /* Rounded corners */
             max-width: 500px; /* Optional: constrain width for better appearance */
             margin: var(--margin-small) auto; /* Center the container horizontally and add vertical spacing */
-
+        
             h3, span {
-            color: var(--color-large-header);
+                color: var(--color-large-header);
             }
         }
-        .favorite-form {
+        
+        .new-trip-form {
             display: flex;
             flex-direction: column; /* Stack children vertically */
             gap: 0.2em; /* Add space between form fields */
@@ -32,17 +42,20 @@ const defaults = {
             margin: 0 auto; /* Optional: center the form horizontally */
             margin-bottom: var(--margin-tiny);
         }
-        .favorite-form mu-form.edit {
+        
+        .new-trip-form mu-form.edit {
             display: flex;
             flex-direction: column; /* Stack labels vertically */
             gap: 1em; /* Add space between labels */
         }
-        .favorite-form label {
+        
+        .new-trip-form label {
             display: flex;
             flex-direction: column; /* Stack label text and input vertically */
             gap: 0.5em; /* Add space between text and input */
         }
-        .favorite-form input {
+        
+        .new-trip-form input {
             padding: 0.5em; /* Add padding for a better look */
             border: 1px solid #ccc; /* Add border for inputs */
             border-radius: 4px; /* Rounded corners */

@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/styles/reset.css" />
     <link rel="stylesheet" href="/styles/tokens.css" />
     <link rel="stylesheet" href="/styles/page.css" />
-    <link rel="stylesheet" href="/styles/favorite.css" />
+    <link rel="stylesheet" href="/styles/new-form.css" />
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,14 +22,14 @@
 <script type="module">
     import { Events, define, Auth } from "@calpoly/mustang";
     import { HeaderElement } from "../scripts/header.js";
-    import { FavoriteCatch } from "../scripts/favorite-catch.js"
+    import { TripsForm } from "../scripts/trips-form.js"
     
     window.relayEvent = Events.relay;
 
     define({
         "custom-header": HeaderElement,
         "mu-auth": Auth.Provider,
-        "favorite-catch": FavoriteCatch,
+        "trip-form": TripsForm,
     });
 
     HeaderElement.initializeOnce();
@@ -37,11 +37,9 @@
 <body class="page">
     <mu-auth provides="catch-collector:auth">
         <custom-header>
-            <slot slot="page-title">Favorite Catch</slot>
+            <slot slot="page-title">New Trip</slot>
         </custom-header>
-        <favorite-catch class="table-container">
-            <slot name="location">your mom's house</slot>
-        </favorite-catch>
+        <trip-form class="form-container"></trip-form>
     </mu-auth>
 </body>
 </html>

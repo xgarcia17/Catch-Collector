@@ -1,7 +1,7 @@
 import { css, html, shadow, Form, Observer } from "@calpoly/mustang";
 import reset from "./styles/reset.css.js";
 
-export class FavoriteCatch extends HTMLElement {
+export class TripsForm extends HTMLElement {
   get src() {
     return this.getAttribute("src");
   }
@@ -24,7 +24,7 @@ export class FavoriteCatch extends HTMLElement {
   }
 
   hydrate(url) {
-    console.log("fetching url in favorite-catch.js!");
+    console.log("fetching url in trips-form.js!");
     fetch(url, { headers: this.authorization })
       .then((res) => {
         if (res.status !== 200) throw `Status: ${res.status}`;
@@ -55,72 +55,60 @@ export class FavoriteCatch extends HTMLElement {
 
   static template = html`
     <template>
-        <h3 class="table-title"><slot name="title">My Favorite Catch</slot></h3>
-        <div class="table-container-centered">
-          <table border="1">
-            <tr>
-              <th>Date</th>
-              <th>Location</th>
-              <th>Species</th>
-              <th>Gear</th>
-              <th>Rig</th>
-            </tr>
-            <tr>
-              <td><time name="date"><em>date</em></time></td>
-              <td><slot name="location"><em>location</em></slot></td>
-              <td><slot name="species"><em>species</em></slot></td>
-              <td><slot name="gear"><em>gear</em></slot></td>
-              <td><slot name="rig"><em>rig</em></slot></td>
-            </tr>
-          </table>
+      <div class="new-trip-form-container">
+        <div class="new-trip-form">
+          <mu-form class="edit">
+            <h3 class="new-trip-form-title">Log a New Trip</h3>
+            <label>
+              <span><h4>Trip Name</h4></span>
+              <input name="tripName" />
+            </label>
+            <label>
+              <span><h4>Date</h4></span>
+              <input name="tripDate" />
+            </label>
+            <label>
+              <span><h4>Location</h4></span>
+              <input name="location" />
+            </label>
+            <label>
+              <span><h4>Start Time</h4></span>
+              <input name="startTime" />
+            </label>
+            <label>
+              <span><h4>End Time</h4></span>
+              <input name="endTime" />
+            </label>
+            <label>
+              <span><h4>Weather</h4></span>
+              <input name="weather" />
+            </label>
+            <label>
+              <span><h4>Start Temperature</h4></span>
+              <input name="startTemp" />
+            </label>
+            <label>
+              <span><h4>End Temperature</h4></span>
+              <input name="endTemp" />
+            </label>
+            <label>
+              <span><h4>Catches</h4></span>
+              <input name="catches" />
+            </label>
+            <slot name="submit">
+              <button type="submit">Log Trip</button>
+            </slot>
+          </mu-form>
         </div>
-        <div class="catch-description">
-          <p><slot name="description"><em>description</em></slot></p>
-        </div>
-        <div class="favorite-form-container">
-          <div class="favorite-form">
-            <h3 class="favorite-form-title">Edit your favorite catch details</h3>
-            <mu-form class="edit">
-              <label>
-                <span>Title</span>
-                <input name="title" />
-              </label>
-              <label>
-                <span>Date</span>
-                <input name="date" />
-              </label>
-              <label>
-                <span>Location</span>
-                <input name="location" />
-              </label>
-              <label>
-                <span>Species</span>
-                <input name="species" />
-              </label>
-              <label>
-                <span>Gear</span>
-                <input name="gear" />
-              </label>
-              <label>
-                <span>Rig</span>
-                <input name="rig" />
-              </label>
-              <label>
-                <span>Description</span>
-                <input name="description" />
-              </label>
-              <button type="submit" class="submit-button">Save Favorite</button>
-            </mu-form>
-          </div>
-        </div>
+      </div>
     </template>
   `;
 
   static styles = css `
-    .favorite-form-title {
+    .new-trip-form-title {
         text-align: center;
     }
-    .favorite-form-container {
+    .new-trip-form-container {
         padding: var(--margin-tiny); /* Add spacing inside the container */
         background-color: var(--color-large-header-background); /* Light gray background */
         border-radius: 8px; /* Rounded corners */
@@ -131,7 +119,7 @@ export class FavoriteCatch extends HTMLElement {
         color: var(--color-large-header);
         }
     }
-    .favorite-form {
+    .new-trip-form {
         display: flex;
         flex-direction: column; /* Stack children vertically */
         gap: 0.2em; /* Add space between form fields */
@@ -139,17 +127,17 @@ export class FavoriteCatch extends HTMLElement {
         margin: 0 auto; /* Optional: center the form horizontally */
         margin-bottom: var(--margin-tiny);
     }
-    .favorite-form mu-form.edit {
+    .new-trip--form mu-form.edit {
         display: flex;
         flex-direction: column; /* Stack labels vertically */
         gap: 1em; /* Add space between labels */
     }
-    .favorite-form label {
+    .new-trip--form label {
         display: flex;
         flex-direction: column; /* Stack label text and input vertically */
         gap: 0.5em; /* Add space between text and input */
     }
-    .favorite-form input {
+    .new-trip--form input {
         padding: 0.5em; /* Add padding for a better look */
         border: 1px solid #ccc; /* Add border for inputs */
         border-radius: 4px; /* Rounded corners */
@@ -160,9 +148,16 @@ export class FavoriteCatch extends HTMLElement {
   `;
 
   get form() {
-    return this.shadowRoot.querySelector("mu-form.edit");
+    return this.shadowRoot.querySelector("mu-form.start");
   }
   
+  get mode() {
+    return this.getAttribute("mode");
+  }
+  
+  set mode(m) {
+    this.setAttribute("mode", m);
+  }
   // submit(url, json) {
   //   fetch(url, … )
   //     .then((res) => {
@@ -179,8 +174,8 @@ export class FavoriteCatch extends HTMLElement {
   constructor() {
     super();
     shadow(this)
-      .template(FavoriteCatch.template)
-      .styles(reset.styles, FavoriteCatch.styles);
+      .template(TripsForm.template)
+      .styles(reset.styles, TripsForm.styles);
     
     this.addEventListener("mu-form:submit", (event) =>
       this.submit(this.src, event.detail)

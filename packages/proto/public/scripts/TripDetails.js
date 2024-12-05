@@ -25,12 +25,6 @@ export class TripDetails extends HTMLElement {
 
   hydrate(url) {
     console.log("fetching url in TripDetails.js!");
-
-    const method = "POST";
-    const headers = {
-      "Content-Type": "application/json"
-    };
-
     fetch(url, { headers: this.authorization })
       .then((res) => {
         if (res.status !== 200) throw `Status: ${res.status}`;

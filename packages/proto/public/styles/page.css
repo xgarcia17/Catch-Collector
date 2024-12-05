@@ -109,6 +109,19 @@ table {
     align-items: center;
 }
 
+.form-container {
+    padding-top: -1 * var(--margin-tiny);
+    margin-left: var(--margin-small);
+    margin-right: var(--margin-small);
+    margin-bottom: var(--margin-small);
+    grid-column: 1 / 5;
+}
+
+.new-trip-link {
+    margin-left: var(--margin-small);
+    color: var(--color-basic-text);
+}
+
 /* Header Text */
 header {
     grid-column: start / end;

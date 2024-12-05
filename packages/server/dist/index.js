@@ -28,9 +28,9 @@ var import_trips = require("./pages/trips");
 var import_individualTrip = require("./pages/individualTrip");
 var import_favoriteCatch = require("./pages/favoriteCatch");
 var import_trips_svc = __toESM(require("./services/trips-svc"));
+var import_favorite_catch_svc = __toESM(require("./services/favorite-catch-svc"));
 var import_trips2 = __toESM(require("./routes/trips"));
 var import_auth2 = __toESM(require("./routes/auth"));
-var import_favorite_catch_svc = require("./services/favorite-catch-svc");
 (0, import_mongo.connect)("catch-collector");
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
@@ -78,12 +78,10 @@ app.get("/login", (req, res) => {
   const page = new import_auth.LoginPage();
   res.set("Content-Type", "text/html").send(page.render());
 });
-app.get(
-  "/favorite/:userID",
-  (req, res) => {
-    const { userId } = req.params;
-    const data = (0, import_favorite_catch_svc.getFavoriteCatch)(userId);
+app.get("/favorite/:userID", (req, res) => {
+  const { userID } = req.params;
+  import_favorite_catch_svc.default.get(userID).then((data) => {
     const page = new import_favoriteCatch.FavoriteCatchPage(data);
     res.set("Content-Type", "text/html").send(page.render());
-  }
-);
+  });
+});

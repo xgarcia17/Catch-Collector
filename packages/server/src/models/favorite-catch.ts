@@ -1,5 +1,6 @@
 
 export interface FavoriteCatch {
+    userID: string,
     title: string,
     date: Date,
     location: string,

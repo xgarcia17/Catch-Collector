@@ -6,11 +6,11 @@ import { IndividualTripPage } from "./pages/individualTrip";
 import { FavoriteCatchPage } from "./pages/favoriteCatch";
 import { Trip } from "models";
 import Trips from "./services/trips-svc";
+import Favorites from "./services/favorite-catch-svc";
 
 // importing routes
 import trips from "./routes/trips";
 import auth, { authenticateUser } from "./routes/auth";
-import { getFavoriteCatch } from "./services/favorite-catch-svc";
 
 connect("catch-collector");
 const app = express();
@@ -79,13 +79,13 @@ app.get("/login", (req: Request, res: Response) => {
 
 
 // for favorite catch
-app.get(
-  "/favorite/:userID",
-  (req: Request, res: Response) => {
-    const { userId } = req.params;
-    const data = getFavoriteCatch(userId);
-    const page = new FavoriteCatchPage(data);
+app.get("/favorite/:userID", (req: Request, res: Response) => {
+  const { userID } = req.params;
 
-    res.set("Content-Type", "text/html").send(page.render());
-  }
-);
+  Favorites.get(userID).then((data) => {
+    const page = new FavoriteCatchPage(data);
+    res
+      .set("Content-Type", "text/html")
+      .send(page.render());
+  });
+});

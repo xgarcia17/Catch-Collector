@@ -18,6 +18,7 @@ export class FavoriteCatchPage {
 
   renderBody() {
     const { 
+      userID,
       title,
       date,
       location,

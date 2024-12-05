@@ -46,7 +46,7 @@ app.listen(port, () => {
 });
 app.use("/auth", import_auth2.default);
 app.use("/api/trips", import_auth2.authenticateUser, import_trips2.default);
-app.use("/api/favorites", import_favorites.default);
+app.use("/api/favorites", import_auth2.authenticateUser, import_favorites.default);
 app.get(
   "/trips/:userID",
   (req, res) => {

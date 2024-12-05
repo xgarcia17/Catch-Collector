@@ -26,7 +26,6 @@ table {
     }
 }
 
-
 .table-container-centered {
     display: flex;
     justify-content: center;

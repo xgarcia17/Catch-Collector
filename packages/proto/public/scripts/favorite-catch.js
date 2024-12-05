@@ -3,35 +3,50 @@ import reset from "./styles/reset.css.js";
 
 export class FavoriteCatch extends HTMLElement {
 
-  get src() {
-    return this.getAttribute("src");
-  }
+  // get src() {
+  //   return this.getAttribute("src");
+  // }
 
-  connectedCallback() {
-    if (this.src) this.hydrate(this.src);
-  }
+  // connectedCallback() {
+  //   if (this.src) this.hydrate(this.src);
+  // }
 
-  hydrate(url) {
-    fetch(url)
-      .then((res) => {
-        if (res.status !== 200) throw `Status: ${res.status}`;
-        return res.json();
-      })
-      .then((json) => this.renderSlots(json))
-      .catch((error) =>
-        console.log(`Failed to render data ${url}:`, error)
-      );
-  }
+  // _authObserver = new Observer(this, "catch-collector:auth");
 
-  renderSlots(json) {
-    const entries = Object.entries(json);
-    const toSlot = ([key, value]) => {
-      if (key === "date") return html`<time slot="${key}">${value}</time>`
-      else return html`<span slot="${key}">${value}</span>`
-    }
-    const fragment = entries.map(toSlot);
-    this.replaceChildren(...fragment);
-  }
+  // connectedCallback() {
+  //   this._authObserver.observe(({ user }) => {
+  //     this._user = user;
+  //   });
+  // }
+
+  // get form() {
+  //   return this.shadowRoot.querySelector("mu-form.edit");
+  // }
+
+  // hydrate(url) {
+  //   fetch(url, { headers: this.authorization })
+  //     .then((res) => {
+  //       if (res.status !== 200) throw `Status: ${res.status}`;
+  //       return res.json();
+  //     })
+  //     .then((json) => {
+  //       this.renderSlots(json);
+  //       this.form.init = json; // populate mu-form
+  //     })
+  //     .catch((error) =>
+  //       console.log(`Failed to render data ${url}:`, error)
+  //     );
+  // }
+
+  // renderSlots(json) {
+  //   const entries = Object.entries(json);
+  //   const toSlot = ([key, value]) => {
+  //     if (key === "date") return html`<time slot="${key}">${value}</time>`
+  //     else return html`<span slot="${key}">${value}</span>`
+  //   }
+  //   const fragment = entries.map(toSlot);
+  //   this.replaceChildren(...fragment);
+  // }
 
   static template = html`
     <template>
@@ -106,17 +121,4 @@ export class FavoriteCatch extends HTMLElement {
       .styles(reset.styles, FavoriteCatch.styles);
   }
 
-  // get form() {
-  //   return this.shadowRoot.querySelector("mu-form.edit");
-  // }
-
-  // hydrate(url) {
-  //   fetch(url, … )
-  //     .then( … )
-  //     .then((json) => {
-  //       this.renderSlots(json);
-  //       this.form.init = json; // populate mu-form
-  //     })
-  //     .catch( … );
-  // }
 }

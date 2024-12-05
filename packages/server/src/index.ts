@@ -36,7 +36,7 @@ app.use("/auth", auth);
 app.use("/api/trips", authenticateUser, trips);
 
 // mount favorites API
-app.use("/api/favorites", favorites);
+app.use("/api/favorites", authenticateUser, favorites);
 
 // get all trip posts by userID
 app.get("/trips/:userID", (req: Request, res: Response) => {

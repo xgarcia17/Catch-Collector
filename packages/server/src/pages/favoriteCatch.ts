@@ -12,7 +12,6 @@ export class FavoriteCatchPage {
   render() {
     return renderPage({
       body: this.renderBody(),
-      // add more parts here later
     });
   }
 
@@ -58,6 +57,41 @@ export class FavoriteCatchPage {
                 </div>
                 <div class="catch-description">
                     <p><slot name="description">${description}</p>
+                </div>
+                <div class="favorite-form-container">
+                    <div class="favorite-form">
+                        <h3 class="favorite-form-title">Edit your favorite catch details</h3>
+                        <mu-form class="edit">
+                            <label>
+                                <span>Title</span>
+                                <input name="title" />
+                            </label>
+                            <label>
+                                <span>Date</span>
+                                <input name="date" />
+                            </label>
+                            <label>
+                                <span>Location</span>
+                                <input name="location" />
+                            </label>
+                            <label>
+                                <span>Species</span>
+                                <input name="species" />
+                            </label>
+                            <label>
+                                <span>Gear</span>
+                                <input name="gear" />
+                            </label>
+                            <label>
+                                <span>Rig</span>
+                                <input name="rig" />
+                            </label>
+                            <label>
+                                <span>Description</span>
+                                <input name="description" />
+                            </label>
+                        </mu-form>
+                    </div>
                 </div>
             </div>
         </mu-auth>

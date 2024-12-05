@@ -31,7 +31,7 @@ const defaults = {
     "/styles/favorite.css"
   ],
   styles: [
-    `
+    import_server.css`
         .favorite-form-title {
             text-align: center;
         }

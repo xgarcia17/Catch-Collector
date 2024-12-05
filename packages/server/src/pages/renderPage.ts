@@ -1,4 +1,4 @@
-import { PageParts, renderWithDefaults } from "@calpoly/mustang/server";
+import { PageParts, css, renderWithDefaults } from "@calpoly/mustang/server";
 
 const defaults = {
     stylesheets: [
@@ -9,7 +9,7 @@ const defaults = {
         "/styles/favorite.css",
     ],
     styles: [
-        `
+        css`
         .favorite-form-title {
             text-align: center;
         }

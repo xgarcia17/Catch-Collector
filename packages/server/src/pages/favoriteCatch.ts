@@ -35,6 +35,7 @@ export class FavoriteCatchPage {
             <custom-header>
                 <slot slot="page-title">Favorite Catch</slot>
             </custom-header>
+            <!--<favorite-catch class="table-container" src="/api/favorites/${userID}"></favorite-catch>-->
             <div class="table-container">
                 <h3 class="table-title"><slot name="title">${title}</slot></h3>
                 <div class="table-container-centered">
@@ -90,6 +91,7 @@ export class FavoriteCatchPage {
                                 <span>Description</span>
                                 <input name="description" />
                             </label>
+                            <button type="submit" class="submit-button">Save Favorite</button>
                         </mu-form>
                     </div>
                 </div>

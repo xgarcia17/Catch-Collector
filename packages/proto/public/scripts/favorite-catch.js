@@ -7,46 +7,45 @@ export class FavoriteCatch extends HTMLElement {
   //   return this.getAttribute("src");
   // }
 
-  // connectedCallback() {
-  //   if (this.src) this.hydrate(this.src);
-  // }
+  static uses = define({
+    "mu-form": Form.Element,
+  });
 
-  // _authObserver = new Observer(this, "catch-collector:auth");
+  connectedCallback() {
+    // if (this.src) this.hydrate(this.src);
+    this._authObserver.observe(({ user }) => {
+      this._user = user;
+    });
+  }
 
-  // connectedCallback() {
-  //   this._authObserver.observe(({ user }) => {
-  //     this._user = user;
-  //   });
-  // }
+  get form() {
+    return this.shadowRoot.querySelector("mu-form.edit");
+  }
 
-  // get form() {
-  //   return this.shadowRoot.querySelector("mu-form.edit");
-  // }
+  hydrate(url) {
+    fetch(url)
+      .then((res) => {
+        if (res.status !== 200) throw `Status: ${res.status}`;
+        return res.json();
+      })
+      .then((json) => {
+        this.renderSlots(json);
+        this.form.init = json; // populate mu-form
+      })
+      .catch((error) =>
+        console.log(`Failed to render data ${url}:`, error)
+      );
+  }
 
-  // hydrate(url) {
-  //   fetch(url, { headers: this.authorization })
-  //     .then((res) => {
-  //       if (res.status !== 200) throw `Status: ${res.status}`;
-  //       return res.json();
-  //     })
-  //     .then((json) => {
-  //       this.renderSlots(json);
-  //       this.form.init = json; // populate mu-form
-  //     })
-  //     .catch((error) =>
-  //       console.log(`Failed to render data ${url}:`, error)
-  //     );
-  // }
-
-  // renderSlots(json) {
-  //   const entries = Object.entries(json);
-  //   const toSlot = ([key, value]) => {
-  //     if (key === "date") return html`<time slot="${key}">${value}</time>`
-  //     else return html`<span slot="${key}">${value}</span>`
-  //   }
-  //   const fragment = entries.map(toSlot);
-  //   this.replaceChildren(...fragment);
-  // }
+  renderSlots(json) {
+    const entries = Object.entries(json);
+    const toSlot = ([key, value]) => {
+      if (key === "date") return html`<time slot="${key}">${value}</time>`
+      else return html`<span slot="${key}">${value}</span>`
+    }
+    const fragment = entries.map(toSlot);
+    this.replaceChildren(...fragment);
+  }
 
   static template = html`
     <template>
@@ -104,21 +103,38 @@ export class FavoriteCatch extends HTMLElement {
                 <span>Description</span>
                 <input name="description" />
               </label>
+              <button type="submit" class="submit-button">Save Favorite</button>
             </mu-form>
           </div>
         </div>
     </template>
   `;
 
-  static styles = css `
-   
-  `;
+  static styles = css ``;
   
+  submit(url, json) {
+
+    fetch(url, … )
+      .then((res) => {
+        // check status first here
+        return res.json();
+      })
+      .then((json) => {
+        this.renderSlots(json);
+        this.form.init = json;
+      })
+      .catch( … );
+  }
+
   constructor() {
     super();
     shadow(this)
       .template(FavoriteCatch.template)
       .styles(reset.styles, FavoriteCatch.styles);
+    
+    this.addEventListener("mu-form:submit", (event) =>
+      this.submit(this.src, event.detail)
+    );
   }
 
 }

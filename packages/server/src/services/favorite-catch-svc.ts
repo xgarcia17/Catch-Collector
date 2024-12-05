@@ -31,9 +31,34 @@ function get(userID: String): Promise<FavoriteCatch> {
     });
 }
 
-export default { index, get };
+// post new trip post
+function create(favor: FavoriteCatch, userID: string): Promise<FavoriteCatch> {
+  return FavoriteCatchModel.findOneAndUpdate(
+    { userID },  // Find the document with the given userID
+    { $set: favor },  // Update the fields with the new data
+    {
+      new: true,  // Return the updated document (not the old one)
+      upsert: true,  // If no document is found, insert a new one
+    }
+  )
+  .then((result) => {
+    if (!result) {
+      throw new Error(`${userID} not updated or inserted`);
+    }
+    return result as FavoriteCatch;  // Return the updated or inserted document
+  })
+  .catch((err) => {
+    throw new Error(err);  // Handle any errors that may occur
+  });
+}
 
-// export function getFavoriteCatch(_: string) {
-//   // return Venice regardless of which destination is requested
-//   return favoriteCatch;
-// }
+// delete existing trip post
+function remove(userID: String): Promise<void> {
+  return FavoriteCatchModel.findOneAndDelete({ userID : userID }).then(
+      (deleted) => {
+      if (!deleted) throw `favorite for user ${userID} not deleted`;
+      }
+  );
+}
+
+export default { index, get, create, remove };

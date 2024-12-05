@@ -74,4 +74,18 @@ export class FavoriteCatch extends HTMLElement {
       .template(FavoriteCatch.template)
       .styles(reset.styles, FavoriteCatch.styles);
   }
+
+  // get form() {
+  //   return this.shadowRoot.querySelector("mu-form.edit");
+  // }
+
+  // hydrate(url) {
+  //   fetch(url, … )
+  //     .then( … )
+  //     .then((json) => {
+  //       this.renderSlots(json);
+  //       this.form.init = json; // populate mu-form
+  //     })
+  //     .catch( … );
+  // }
 }

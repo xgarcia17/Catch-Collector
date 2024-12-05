@@ -10,6 +10,7 @@ import Favorites from "./services/favorite-catch-svc";
 
 // importing routes
 import trips from "./routes/trips";
+import favorites from "./routes/favorites";
 import auth, { authenticateUser } from "./routes/auth";
 
 connect("catch-collector");
@@ -33,6 +34,9 @@ app.use("/auth", auth);
 
 // mount trips API
 app.use("/api/trips", authenticateUser, trips);
+
+// mount favorites API
+app.use("/api/favorites", favorites);
 
 // get all trip posts by userID
 app.get("/trips/:userID", (req: Request, res: Response) => {

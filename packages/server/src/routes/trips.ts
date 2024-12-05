@@ -24,7 +24,7 @@ router.get("", (req: Request, res: Response) => {
     }
 });
   
-// // get trips by userID
+// get trips by userID
 router.get("/:userID", (req: Request, res: Response) => {
     const { userID } = req.params;
 

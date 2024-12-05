@@ -30,6 +30,7 @@ var import_favoriteCatch = require("./pages/favoriteCatch");
 var import_trips_svc = __toESM(require("./services/trips-svc"));
 var import_favorite_catch_svc = __toESM(require("./services/favorite-catch-svc"));
 var import_trips2 = __toESM(require("./routes/trips"));
+var import_favorites = __toESM(require("./routes/favorites"));
 var import_auth2 = __toESM(require("./routes/auth"));
 (0, import_mongo.connect)("catch-collector");
 const app = (0, import_express.default)();
@@ -45,6 +46,7 @@ app.listen(port, () => {
 });
 app.use("/auth", import_auth2.default);
 app.use("/api/trips", import_auth2.authenticateUser, import_trips2.default);
+app.use("/api/favorites", import_favorites.default);
 app.get(
   "/trips/:userID",
   (req, res) => {

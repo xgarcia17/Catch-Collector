@@ -21,82 +21,65 @@
         }
     </script>
     <script type="module">
-    
-        import { Events } from "@calpoly/mustang"
-        window.relayEvent = Events.relay;
-    
-    </script>
-    <script type="module">
-    
-        function toggleLightView(page, checked) {
-            page.classList.toggle("light-view", checked);
-        }
-    
-        document.body.addEventListener("light-view", (event) => 
-            toggleLightView(event.currentTarget, event.detail.checked)
-        );
-    
-    </script>
-    <script type="module">
-        import { define } from "@calpoly/mustang";
+        import { Events, define, Auth } from "@calpoly/mustang";
         import { TripDetails } from "../scripts/TripDetails.js";
+        import { HeaderElement } from "../scripts/header.js";
       
+        window.relayEvent = Events.relay;
+        
         define({
-          "trip-details": TripDetails
+          "trip-details": TripDetails,
+          "custom-header": HeaderElement,
+          "mu-auth": Auth.Provider
         });
+
+        HeaderElement.initializeOnce();
     </script>
 
     <body class="page">
-        <header>
-            <div class="header-title">
-                <a href="../index.html"><h1>Catch Collector</h1></a>
-                <h1>&nbsp&nbsp|&nbsp Your Trips</h1>
-            </div>
-            <div class="header-contents">
-                <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
-                    <input type="checkbox" autocomplete="off" />
-                    <h2>&nbspLight View</h2>
-                </label>
-                <h2>Xavier G.</h2>
-            </div>
-        </header>
-        <trip-details class="trip-section-block">
-            <slot slot="trip-title-text">Morro Strand State Beach</slot>
-            <time slot="trip-title-date">Sun, 10/13/2024</time>
-            <slot slot="location">Morro Strand State Beach, Morro Bay, CA</slot>
-            <time slot="date">Sunday, October 13, 2024</time>
-            <time slot="start-time">11:17 AM</time>
-            <time slot="end-time">1:54 PM</time>
-            <slot slot="weather">Overcast</slot>
-            <slot slot="start-temp">53°F</slot>
-            <slot slot="end-temp">65°F</slot>
-            <slot slot="catches">3 Surfperch</slot>
-        </trip-details>
+        <mu-auth provides="catch-collector:auth">
+            <custom-header>
+                <slot slot="page-title">Your Trips</slot>
+            </custom-header>
+            
+            <trip-details class="trip-section-block">
+                <slot slot="trip-title-text">Morro Strand State Beach</slot>
+                <time slot="trip-title-date">Sun, 10/13/2024</time>
+                <slot slot="location">Morro Strand State Beach, Morro Bay, CA</slot>
+                <time slot="date">Sunday, October 13, 2024</time>
+                <time slot="start-time">11:17 AM</time>
+                <time slot="end-time">1:54 PM</time>
+                <slot slot="weather">Overcast</slot>
+                <slot slot="start-temp">53°F</slot>
+                <slot slot="end-temp">65°F</slot>
+                <slot slot="catches">3 Surfperch</slot>
+            </trip-details>
 
-        <trip-details class="trip-section-block">
-            <slot slot="trip-title-text">Laguna Lake</slot>
-            <time slot="trip-title-date">Mon, 9/16/2024</time>
-            <slot slot="location">Laguna Lake, San Luis Obispo, CA</slot>
-            <time slot="date">Monday, September 16, 2024</time>
-            <time slot="start-time">8:15 AM</time>
-            <time slot="end-time">11:26 AM</time>
-            <slot slot="weather">Sunny</slot>
-            <slot slot="start-temp">56°F</slot>
-            <slot slot="end-temp">72°F</slot>
-            <slot slot="catches">2 Largemouth Bass, 1 Bluegill</slot>
-        </trip-details>
+            <trip-details class="trip-section-block">
+                <slot slot="trip-title-text">Laguna Lake</slot>
+                <time slot="trip-title-date">Mon, 9/16/2024</time>
+                <slot slot="location">Laguna Lake, San Luis Obispo, CA</slot>
+                <time slot="date">Monday, September 16, 2024</time>
+                <time slot="start-time">8:15 AM</time>
+                <time slot="end-time">11:26 AM</time>
+                <slot slot="weather">Sunny</slot>
+                <slot slot="start-temp">56°F</slot>
+                <slot slot="end-temp">72°F</slot>
+                <slot slot="catches">2 Largemouth Bass, 1 Bluegill</slot>
+            </trip-details>
 
-        <trip-details class="trip-section-block">
-            <slot slot="trip-title-text">Halloween at Morro Bay</slot>
-            <time slot="trip-title-date">Thu, 10/31/2024</time>
-            <slot slot="location">Morro Strand State Beach, Morro Bay, CA</slot>
-            <time slot="date">Monday, September 16, 2024</time>
-            <time slot="start-time">8:00 AM</time>
-            <time slot="end-time">11:30 AM</time>
-            <slot slot="weather">Overcast</slot>
-            <slot slot="start-temp">48°F</slot>
-            <slot slot="end-temp">56°F</slot>
-            <slot slot="catches">1 Smelt, 2 Surfperch</slot>
-        </trip-details>
+            <trip-details class="trip-section-block">
+                <slot slot="trip-title-text">Halloween at Morro Bay</slot>
+                <time slot="trip-title-date">Thu, 10/31/2024</time>
+                <slot slot="location">Morro Strand State Beach, Morro Bay, CA</slot>
+                <time slot="date">Monday, September 16, 2024</time>
+                <time slot="start-time">8:00 AM</time>
+                <time slot="end-time">11:30 AM</time>
+                <slot slot="weather">Overcast</slot>
+                <slot slot="start-temp">48°F</slot>
+                <slot slot="end-temp">56°F</slot>
+                <slot slot="catches">1 Smelt, 2 Surfperch</slot>
+            </trip-details>
+        </mu-auth>
     </body>
 </html>

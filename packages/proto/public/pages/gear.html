@@ -20,88 +20,77 @@
     }
 </script>
 <script type="module">
-    
-    import { Events } from "@calpoly/mustang"
+    import { Events, define, Auth } from "@calpoly/mustang";
+    import { HeaderElement } from "../scripts/header.js";
+
     window.relayEvent = Events.relay;
 
-</script>
-<script type="module">
+    define({
+        "custom-header": HeaderElement,
+        "mu-auth": Auth.Provider
+    });
 
-    function toggleLightView(page, checked) {
-        page.classList.toggle("light-view", checked);
-    }
-
-    document.body.addEventListener("light-view", (event) => 
-        toggleLightView(event.currentTarget, event.detail.checked)
-    );
-
+    HeaderElement.initializeOnce();
 </script>
 <body class="page">
-    <header>
-        <div class="header-title">
-            <a href="../index.html"><h1>Catch Collector</h1></a>
-            <h1>
+    <mu-auth provides="catch-collector:auth">
+        <custom-header>
+            <slot slot="page-title">Your Gear</slot>
+            <slot slot="image">
                 <svg class="icon">
                     <use href="../icons/tackle.svg#icon-bobber" />
                 </svg>
-                Your Gear
-            </h1>
+            </slot>
+        </custom-header>
+        
+        <div class="combos-list">
+            <h3 class="section-title">Your Combos</h3>
+            <ul>
+                <dl class="gear-combo-section">
+                    <dt>Green Lew's</dt>
+                    <dd><strong>Rod:</strong> Lew's Mach II Casting, 7', MH</dd>
+                    <dd><strong>Reel:</strong> Lew's Mach II Speed Spool, GR: 7.2:1</dd>
+                    <dd><strong>Line:</strong> 15lb Flourocarbon</dd>
+                </dl>
+                <dl class="gear-combo-section">
+                    <dt>Red Lew's</dt>
+                    <dd><strong>Rod:</strong> Lew's Mach II Fuego Casting, 7', MH</dd>
+                    <dd><strong>Reel:</strong> Browning, GR: 5.4:1</dd>
+                    <dd><strong>Line:</strong> 15lb Flourocarbon</dd>
+                </dl>
+                <dl class="gear-combo-section">
+                    <dt>Field & Stream Heavy</dt>
+                    <dd><strong>Rod:</strong> Field & Stream Casting, 7'-3", H</dd>
+                    <dd><strong>Reel:</strong> BP Champion, GR: 6.3:1</dd>
+                    <dd><strong>Line:</strong> 50lb Braid</dd>
+                    <dd><strong>Leader:</strong> 25lb Flourocarbon</dd>
+                </dl>
+                <dl class="gear-combo-section">
+                    <dt>Uncle Ken's Spinning</dt>
+                    <dd><strong>Rod:</strong> Spinning, 7'-6", M</dd>
+                    <dd><strong>Reel:</strong> Ugly Stick</dd>
+                    <dd><strong>Line:</strong> 6lb Flourocarbon</dd>
+                </dl>
+            </ul>
         </div>
-        <div class="header-contents">
-            <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">
-                <input type="checkbox" autocomplete="off" />
-                <h2>&nbspLight View</h2>
-            </label>
-            <h2>Xavier G.</h2>
+        <div class="rods-list">
+            <h3 class="section-title">Your Rods</h3>
+            <ul>
+                <h5>Lew's Mach II</h5><p>Type: Casting, Size: 7', Power: Medium-Heavy, Action: Fast<p>
+                <h5>Lew's Mach II Fuego</h5><p>Type: Casting, Size: 7', Power: Medium-Heavy, Action: Medium<p>
+                <h5>Field & Stream</h5><p>ype: Casting, Size: 7'-3", Power: Heavy, Action: Medimu<p>
+                <h5>Uncle Ken's Spinning</h5><p>Type: Spinning, Size: 7'-6", Power: Medium, Action: Fast<p>
+            </ul>
         </div>
-    </header>
-    <div class="combos-list">
-        <h3 class="section-title">Your Combos</h3>
-        <ul>
-            <dl class="gear-combo-section">
-                <dt>Green Lew's</dt>
-                <dd><strong>Rod:</strong> Lew's Mach II Casting, 7', MH</dd>
-                <dd><strong>Reel:</strong> Lew's Mach II Speed Spool, GR: 7.2:1</dd>
-                <dd><strong>Line:</strong> 15lb Flourocarbon</dd>
-            </dl>
-            <dl class="gear-combo-section">
-                <dt>Red Lew's</dt>
-                <dd><strong>Rod:</strong> Lew's Mach II Fuego Casting, 7', MH</dd>
-                <dd><strong>Reel:</strong> Browning, GR: 5.4:1</dd>
-                <dd><strong>Line:</strong> 15lb Flourocarbon</dd>
-            </dl>
-            <dl class="gear-combo-section">
-                <dt>Field & Stream Heavy</dt>
-                <dd><strong>Rod:</strong> Field & Stream Casting, 7'-3", H</dd>
-                <dd><strong>Reel:</strong> BP Champion, GR: 6.3:1</dd>
-                <dd><strong>Line:</strong> 50lb Braid</dd>
-                <dd><strong>Leader:</strong> 25lb Flourocarbon</dd>
-            </dl>
-            <dl class="gear-combo-section">
-                <dt>Uncle Ken's Spinning</dt>
-                <dd><strong>Rod:</strong> Spinning, 7'-6", M</dd>
-                <dd><strong>Reel:</strong> Ugly Stick</dd>
-                <dd><strong>Line:</strong> 6lb Flourocarbon</dd>
-            </dl>
-        </ul>
-    </div>
-    <div class="rods-list">
-        <h3 class="section-title">Your Rods</h3>
-        <ul>
-            <h5>Lew's Mach II</h5><p>Type: Casting, Size: 7', Power: Medium-Heavy, Action: Fast<p>
-            <h5>Lew's Mach II Fuego</h5><p>Type: Casting, Size: 7', Power: Medium-Heavy, Action: Medium<p>
-            <h5>Field & Stream</h5><p>ype: Casting, Size: 7'-3", Power: Heavy, Action: Medimu<p>
-            <h5>Uncle Ken's Spinning</h5><p>Type: Spinning, Size: 7'-6", Power: Medium, Action: Fast<p>
-        </ul>
-    </div>
-    <div class="reels-list">
-        <h3 class="section-title">Your Reels</h3>
-        <ul>
-            <h5>Lew's Mach II Speed Spool</h5><p>Type: Casting, Gear Ratio: 7.2:1<p>
-            <h5>BP Champion</h5><p>Type: Casting, Gear Ratio: 6.3:1<p>
-            <h5>Browning</h5><p>Type: Casting, Gear Ratio: 5.4:1<p>
-            <h5>Uncle Ken's Spinning</h5><p>Type: Spinning<p>
-        </ul>
-    </div>
+        <div class="reels-list">
+            <h3 class="section-title">Your Reels</h3>
+            <ul>
+                <h5>Lew's Mach II Speed Spool</h5><p>Type: Casting, Gear Ratio: 7.2:1<p>
+                <h5>BP Champion</h5><p>Type: Casting, Gear Ratio: 6.3:1<p>
+                <h5>Browning</h5><p>Type: Casting, Gear Ratio: 5.4:1<p>
+                <h5>Uncle Ken's Spinning</h5><p>Type: Spinning<p>
+            </ul>
+        </div>
+    </mu-auth>
 </body>
 </html>

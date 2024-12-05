@@ -3,7 +3,7 @@
 
 .page {
     margin-left: none;
-    > .section-titles {
+    > mu-auth > .section-titles {
         grid-column: start / end;
         display: flex;
         text-align: center;    

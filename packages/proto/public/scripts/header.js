@@ -7,7 +7,8 @@ export class HeaderElement extends HTMLElement {
     <template>
         <header>
             <div class="header-title">
-                <h1>Catch Collector &nbsp|&nbsp <slot name="page-title"><em>page title</em></slot></h1>
+                <a href="/"><h1>Catch Collector</h1></a>
+                <h1><slot name="image">&nbsp|&nbsp</slot> <slot name="page-title"><em>page title</em></slot></h1>
             </div>
             <div class="header-contents">
                 <label onchange="relayEvent(event, 'light-view', {checked: event.target.checked})">

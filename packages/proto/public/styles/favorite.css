@@ -1,0 +1,25 @@
+.table-container {
+    margin-top: var(--margin-small);
+    margin-left: var(--margin-small);
+    margin-right: var(--margin-small);
+    margin-bottom: var(--margin-small);
+
+    grid-column: 1 / 5;
+    
+    .table-container-centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.table-title {
+    padding-bottom: var(--margin-tiny);
+    text-align: center;
+}
+
+.catch-description {
+    padding-top: var(--margin-small);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

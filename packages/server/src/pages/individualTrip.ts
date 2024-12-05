@@ -18,7 +18,6 @@ export class IndividualTripPage {
 
     renderBody() {
         console.log(`\ntripID = ${this.tripID}`);
-
         return html`
         <body class="page">
             <mu-auth provides="catch-collector:auth">

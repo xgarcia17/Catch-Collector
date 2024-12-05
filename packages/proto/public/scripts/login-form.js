@@ -28,7 +28,9 @@ export class LoginForm extends HTMLElement {
   `;
 
   static styles = css`
-    /* CSS for the form here */
+    h1, h2, h3, h4, h5, p, slot {
+        color: #92d4ff;
+    }
   `;
 
   constructor() {

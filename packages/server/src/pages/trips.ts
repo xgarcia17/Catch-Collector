@@ -34,13 +34,6 @@ export class TripsPage {
         const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(tripDate);
         const shortDateFormatted = `${dayName}, ${tripDate.getMonth()+1}/${tripDate.getDate()}/${tripDate.getFullYear()}`;
 
-        // format weather
-        let weatherStr: string = "";
-        for (let i: number = 0; i < weather.length; i ++) {
-            weatherStr += weather[i] + ", "
-        }
-        weatherStr.slice(0, -2);
-
         // format catches
         let catchesStr: string = "";
         for (let i: number = 0; i < catches.length; i ++) {
@@ -56,7 +49,7 @@ export class TripsPage {
             <time slot="date">${longDateFormatted}</time>
             <time slot="start-time">${startTime}</time>
             <time slot="end-time">${endTime}</time>
-            <slot slot="weather">${weatherStr}</slot>
+            <slot slot="weather">${weather}</slot>
             <slot slot="start-temp">${startTemp}</slot>
             <slot slot="end-temp">${endTemp}</slot>
             <slot slot="catches">${catchesStr}</slot>

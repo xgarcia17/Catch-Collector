@@ -59,11 +59,6 @@ class TripsPage {
     const longDateFormatted = new Intl.DateTimeFormat("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" }).format(tripDate);
     const dayName = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(tripDate);
     const shortDateFormatted = `${dayName}, ${tripDate.getMonth() + 1}/${tripDate.getDate()}/${tripDate.getFullYear()}`;
-    let weatherStr = "";
-    for (let i = 0; i < weather.length; i++) {
-      weatherStr += weather[i] + ", ";
-    }
-    weatherStr.slice(0, -2);
     let catchesStr = "";
     for (let i = 0; i < catches.length; i++) {
       catchesStr += catches[i] + ", ";
@@ -77,7 +72,7 @@ class TripsPage {
             <time slot="date">${longDateFormatted}</time>
             <time slot="start-time">${startTime}</time>
             <time slot="end-time">${endTime}</time>
-            <slot slot="weather">${weatherStr}</slot>
+            <slot slot="weather">${weather}</slot>
             <slot slot="start-temp">${startTemp}</slot>
             <slot slot="end-temp">${endTemp}</slot>
             <slot slot="catches">${catchesStr}</slot>

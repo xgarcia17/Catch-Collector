@@ -1,4 +1,4 @@
-import { css, html, shadow, Form, define, Observer } from "@calpoly/mustang";
+import { css, html, shadow, Form, define, Observer, Auth } from "@calpoly/mustang";
 import reset from "./styles/reset.css.js";
 
 export class TripsForm extends HTMLElement {

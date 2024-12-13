@@ -1,0 +1,35 @@
+:root {
+    body.page {
+        --color-background: #00065d;
+        --color-large-header-background: #83a0ff;
+
+        --color-large-header: #001f86;
+        --color-small-header: #92d4ff;
+        --color-basic-text: #d9f0ff;
+        --color-link-text: #589fff;
+
+        --color-table: #0071b6;
+    }
+    body.page.light-view {
+        --color-background: #f7f9fa;
+        --color-large-header-background: #001f86;
+
+        --color-large-header: #83a0ff;
+        --color-small-header: #1525ac;
+        --color-basic-text: #2a40ec;
+        --color-link-text: #589fff;
+
+        --color-table: #abc5ce;
+    }
+
+    --padding-small: 0.25em;
+    --padding-medium: 0.75em;
+
+    /* Margins */
+    --margin-tiny: 1em;
+    --margin-small: 2em;
+
+    /* Fonts */
+    --font-family-body: "New Tegomin", serif;
+    --font-family-display: "Hanalei Fill", "Piedra", "Fredericka the Great", "Cabin Sketch", sans-serif;
+}

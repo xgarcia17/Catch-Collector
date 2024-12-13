@@ -11,21 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap" rel="stylesheet">
     <title>Catch Collector</title>
 </head>
-<!-- <script type="module">
-    
-    import { Events, Auth, define } from "@calpoly/mustang";
-    import { HeaderElement } from "./scripts/header.js";
-
-    window.relayEvent = Events.relay;
-    
-    define({
-        "custom-header": HeaderElement,
-        "mu-auth": Auth.Provider
-    });
-
-    HeaderElement.initializeOnce();
-
-</script> -->
 <script type="module">
     import { define, Auth, Events } from "@calpoly/mustang";
     import { HeaderElement } from "/src/components/header";
@@ -34,7 +19,7 @@
         "custom-header": HeaderElement
      });
     window.relayEvent = Events.relay;
-  </script>
+</script>
 
 <body class="page">
     <mu-auth provides="catch-collector:auth">

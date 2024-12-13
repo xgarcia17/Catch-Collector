@@ -1,0 +1,34 @@
+
+/* CSS for gear.html specific styling */
+
+.gear-body-container > ul {
+    margin-bottom: var(--margin-tiny);
+    grid-column: start / end;
+}
+
+.gear-combo-section{
+    margin-top: 1em;
+}
+
+p {
+    margin-top: 1em;
+}
+
+.combos-list {
+    h3 {
+        margin-bottom: var(--margin-tiny);
+    }
+    grid-column: 1 / 3;
+}
+.rods-list {
+    h3 {
+        margin-bottom: var(--margin-tiny);
+    }
+    grid-column: 3 / 4;
+}
+.reels-list {
+    h3 {
+        margin-bottom: var(--margin-tiny);
+    }
+    grid-column: 4 / 5;
+}

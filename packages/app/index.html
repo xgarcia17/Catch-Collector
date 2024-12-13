@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap" rel="stylesheet">
+    <title>Catch Collector</title>
+</head>
+<!-- <script type="module">
+    
+    import { Events, Auth, define } from "@calpoly/mustang";
+    import { HeaderElement } from "./scripts/header.js";
+
+    window.relayEvent = Events.relay;
+    
+    define({
+        "custom-header": HeaderElement,
+        "mu-auth": Auth.Provider
+    });
+
+    HeaderElement.initializeOnce();
+
+</script> -->
+<script type="module">
+    import { define, Auth, Events } from "@calpoly/mustang";
+    import { HeaderElement } from "/src/components/header";
+
+    define({ "mu-auth": Auth.Provider,
+        "custom-header": HeaderElement
+     });
+    window.relayEvent = Events.relay;
+  </script>
+
+<body class="page">
+    <mu-auth provides="catch-collector:auth">
+        <custom-header>
+            <slot slot="page-title">Home</slot>
+        </custom-header>
+        <div class="home-page-contents">
+            <h3 class="section-title">Welcome! Let's go fishing!</h3>
+            <ul class="main-page-list">
+                <li><h3><a href="./pages/trips.html">Trips</a></li>
+                <li><h3><a href="./pages/catches.html">Catches</a></h3></li>
+                <li><h3><a href="./pages/gear.html">Gear</a></h3></li>
+                <li><h3><a href="./pages/fish.html">Fish</a></h3></li>
+                <li><h3><a href="./pages/waters.html">Waters</a></h3></li>
+            </ul>
+        </div>
+    </mu-auth>
+</body>
+</html>

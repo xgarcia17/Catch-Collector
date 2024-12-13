@@ -92,6 +92,7 @@ trips = ${this.data}`);
                 <custom-header>
                     <slot slot="page-title">Your Trips</slot>
                 </custom-header>
+                <h4><a class="new-trip-link" href="./new-trip">Log new trip</a></h4>
                 ${tripsList}
             </mu-auth>
         </body>

@@ -15,7 +15,8 @@
     import { define, Auth, Events } from "@calpoly/mustang";
     import { HeaderElement } from "/src/components/header";
 
-    define({ "mu-auth": Auth.Provider,
+    define({ 
+        "mu-auth": Auth.Provider,
         "custom-header": HeaderElement
      });
     window.relayEvent = Events.relay;

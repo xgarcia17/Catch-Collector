@@ -59,7 +59,12 @@ export class TripsForm extends HTMLElement {
         body: JSON.stringify(json)  
       })
       .then((res) => {
-        if (res.status !== 200) throw `Status: ${res.status}`;
+        if (res.status !== 201) throw `Status: ${res.status}`;
+        const inputs = this.form.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.value = ''; // Clear value of each input field
+        });
+        alert("Your trip has been posted!");
         return res.json();
       })
       .catch((error) =>

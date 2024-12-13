@@ -30,7 +30,7 @@ app.listen(port, () => {
 app.use("/auth", auth);
 
 // mount trips API
-app.use("/api/trips", authenticateUser, trips);
+app.use("/api/trips", trips);
 
 // get all trip posts by userID
 app.get("/trips/:userID", (req: Request, res: Response) => {

@@ -24,7 +24,7 @@
   }
   
   .new-trip-form {
-      display: flex;
+      display: block;
       flex-direction: column; /* Stack children vertically */
       gap: 0.2em; /* Add space between form fields */
       max-width: 400px; /* Optional: limit the width of the form */
@@ -33,7 +33,7 @@
   }
   
   .new-trip-form mu-form.edit {
-      display: flex;
+      display: block;
       flex-direction: column; /* Stack labels vertically */
       gap: 1em; /* Add space between labels */
   }

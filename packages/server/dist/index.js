@@ -43,7 +43,7 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 app.use("/auth", import_auth2.default);
-app.use("/api/trips", import_auth2.authenticateUser, import_trips2.default);
+app.use("/api/trips", import_trips2.default);
 app.get(
   "/trips/:userID",
   (req, res) => {

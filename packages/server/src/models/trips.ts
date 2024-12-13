@@ -7,7 +7,7 @@ export interface Trip {
     location: string,
     startTime: string,
     endTime: string,
-    weather: Array<Weather>,
+    weather: Weather,
     startTemp: string,
     endTemp: string,
     catches: Array<string>
@@ -15,10 +15,7 @@ export interface Trip {
 
 export type Weather =
     | "Sunny"
-    | "Cloudy"
+    | "Partly Cloudy"
     | "Overcast"
-    | "Foggy"
     | "Windy"
     | "Rainy"
-    | "Stormy"
-    | "Snowy"

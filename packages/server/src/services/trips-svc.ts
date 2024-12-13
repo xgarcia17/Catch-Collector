@@ -8,12 +8,12 @@ const TripSchema = new Schema<Trip>(
         tripName: { type: String, required: true },
         tripDate: { type: Date, required: true },
         location: { type: String, required: true },
-        startTime: { type: String, required: true },
-        endTime: { type: String, required: true },
-        weather: [{ type: String, required: true }],
-        startTemp: { type: String, required: true },
-        endTemp: { type: String, required: true },
-        catches: [{ type: String, required: true }],
+        startTime: { type: String, required: false },
+        endTime: { type: String, required: false },
+        weather: { type: String, required: false },
+        startTemp: { type: String, required: false },
+        endTemp: { type: String, required: false },
+        catches: [{ type: String, required: false }],
     },
     { collection: "trips" }
 );

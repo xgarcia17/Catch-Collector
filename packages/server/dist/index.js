@@ -26,6 +26,7 @@ var import_mongo = require("./services/mongo");
 var import_auth = require("./pages/auth");
 var import_trips = require("./pages/trips");
 var import_individualTrip = require("./pages/individualTrip");
+var import_newTrip = require("./pages/newTrip");
 var import_trips_svc = __toESM(require("./services/trips-svc"));
 var import_trips2 = __toESM(require("./routes/trips"));
 var import_auth2 = __toESM(require("./routes/auth"));
@@ -42,7 +43,7 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 app.use("/auth", import_auth2.default);
-app.use("/api/trips", import_auth2.authenticateUser, import_trips2.default);
+app.use("/api/trips", import_trips2.default);
 app.get(
   "/trips/:userID",
   (req, res) => {
@@ -71,6 +72,10 @@ launching Individual Trip Page with tripID ${tripID}`);
       res.status(400).send("Missing required query parameter: userID");
     }
   }
+});
+app.get("/new-trip/", (req, res) => {
+  const page = new import_newTrip.NewTripFormPage();
+  res.set("Content-Type", "text/html").send(page.render());
 });
 app.get("/login", (req, res) => {
   const page = new import_auth.LoginPage();

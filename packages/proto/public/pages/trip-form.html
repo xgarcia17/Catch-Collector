@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/tokens.css" />
+    <link rel="stylesheet" href="/styles/page.css" />
+    <link rel="stylesheet" href="/styles/new-form.css" />
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Fredericka+the+Great&family=Hanalei+Fill&family=New+Tegomin&family=Piedra&family=Potta+One&family=Road+Rage&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch Collector</title>
+</head>
+<script type="importmap">
+    {
+      "imports": {
+        "@calpoly/mustang": "https://unpkg.com/@calpoly/mustang"
+      }
+    }
+</script>
+<script type="module">
+    import { Events, define, Auth } from "@calpoly/mustang";
+    import { HeaderElement } from "../scripts/header.js";
+    import { TripsForm } from "../scripts/trips-form.js"
+    
+    window.relayEvent = Events.relay;
+
+    define({
+        "custom-header": HeaderElement,
+        "mu-auth": Auth.Provider,
+        "trip-form": TripsForm,
+    });
+
+    HeaderElement.initializeOnce();
+</script>
+<body class="page">
+    <mu-auth provides="catch-collector:auth">
+        <custom-header>
+            <slot slot="page-title">New Trip</slot>
+        </custom-header>
+        <trip-form class="form-container"></trip-form>
+    </mu-auth>
+</body>
+</html>

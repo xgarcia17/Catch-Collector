@@ -57,6 +57,7 @@ router.get("/tripID=:tripID", (req, res) => {
 });
 router.post("/", (req, res) => {
   const newTrip = req.body;
+  console.log(`newTrip = ${JSON.stringify(newTrip, null, 2)}`);
   import_trips_svc.default.create(newTrip).then(
     (trip) => res.status(201).json(trip)
   ).catch((err) => res.status(500).send(err));

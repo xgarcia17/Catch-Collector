@@ -17,14 +17,6 @@ export class LoginPage {
           })
 
             window.relayEvent = Events.relay;
-
-            // function toggleLightView(page, checked) {
-            //     page.classList.toggle("light-view", checked);
-            // }
-
-            // document.body.addEventListener("light-view", (event) => 
-            //     toggleLightView(event.currentTarget, event.detail.checked)
-            // );
           `
         ],
         // stylesheets: [

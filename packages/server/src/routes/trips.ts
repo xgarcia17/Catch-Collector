@@ -24,7 +24,7 @@ router.get("", (req: Request, res: Response) => {
     }
 });
   
-// // get trips by userID
+// get trips by userID
 router.get("/:userID", (req: Request, res: Response) => {
     const { userID } = req.params;
 
@@ -45,8 +45,8 @@ router.get("/tripID=:tripID", (req: Request, res: Response) => {
 // post new trip post
 router.post("/", (req: Request, res: Response) => {
     const newTrip = req.body;
-
-    Trips.create(newTrip)
+    console.log(`newTrip = ${JSON.stringify(newTrip, null, 2)}`);
+        Trips.create(newTrip)
         .then((trip: Trip) =>
         res.status(201).json(trip)
         )

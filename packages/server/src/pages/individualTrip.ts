@@ -27,6 +27,6 @@ export class IndividualTripPage {
                 <trip-details class="trip-section-block" src="/api/trips?tripID=${this.tripID}"></trip-details>
             </mu-auth>
         </body>
-        `
+        `;
     }
 }

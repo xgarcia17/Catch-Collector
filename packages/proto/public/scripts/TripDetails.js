@@ -1,4 +1,4 @@
-import { css, html, shadow } from "@calpoly/mustang";
+import { css, html, shadow, Observer } from "@calpoly/mustang";
 import reset from "./styles/reset.css.js";
 
 export class TripDetails extends HTMLElement {
@@ -6,13 +6,26 @@ export class TripDetails extends HTMLElement {
     return this.getAttribute("src");
   }
 
+  _authObserver = new Observer(this, "catch-collector:auth");
+
   connectedCallback() {
-    if (this.src) this.hydrate(this.src);
+    this._authObserver.observe(({ user }) => {
+      this._user = user;
+      if (this.src) this.hydrate(this.src);
+    });
+  }
+
+  get authorization() {
+    return (
+      this._user?.authenticated && {
+        Authorization: `Bearer ${this._user.token}`
+      }
+    );
   }
 
   hydrate(url) {
-    console.log("fetching url in TripDetails.js!")
-    fetch(url)
+    console.log("fetching url in TripDetails.js!");
+    fetch(url, { headers: this.authorization })
       .then((res) => {
         if (res.status !== 200) throw `Status: ${res.status}`;
         return res.json();
